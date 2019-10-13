@@ -218,3 +218,4 @@ new_gif
 ```
 
 ![](outputs/tt-powerlifting/unnamed-chunk-11-1.gif)<!-- -->
+![](_posts/outputs/games-and-guns/unnamed-chunk-10-1.png)<!-- -->
