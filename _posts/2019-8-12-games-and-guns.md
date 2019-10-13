@@ -138,7 +138,7 @@ oecd_joined %>%
   drop_axis(axis = "y")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](_assets/images_outputs/games-and-guns/unnamed-chunk-9-1.png)<!-- -->
 
 Finally, we can focus on only OECD countries:
 
@@ -159,7 +159,7 @@ oecd_joined %>%
   drop_axis(axis = "y")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](_assets/images_outputs/games-and-guns/unnamed-chunk-10-1.png)<!-- -->
 
 To conclude, let’s add an emoji to fully capture our skepticism with the
 [newfound
@@ -183,5 +183,7 @@ oecd_joined %>%
   drop_axis(axis = "y") +
   geom_text(y = 4.85, x = 107.5, size = 7, label = emoji('thinking'), family = "EmojiOne")
 ```
-
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+<figure>
+  <img src="_assets/images_outputs/games-and-guns/unnamed-chunk-11-1.png" alt="this is a placeholder image">
+  <figcaption>This is a figure caption.</figcaption>
+</figure>
