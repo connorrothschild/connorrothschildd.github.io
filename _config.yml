@@ -57,7 +57,7 @@ plugins:
 
 author:
   name   : "Connor Rothschild"
-  avatar : "/_assets/images/headshotCircle.png"
+  avatar : "https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/headshotCircle.png"
   bio    : "Student, Rice University"
   links:
     - label: "Website"
@@ -65,7 +65,7 @@ author:
       url: "https://www.connorrothschild.com"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/CL-Rothschild"
+      url: "https://twitter.com/CL_Rothschild"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/connorrothschild"
