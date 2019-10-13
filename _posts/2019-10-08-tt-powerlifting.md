@@ -198,7 +198,7 @@ b_gif <- animate(animation2,
 b_gif
 ```
 
-![](outputs/tt-powerlifting/unnamed-chunk-10-1.gif)<!-- -->
+![](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/outputs/tt-powerlifting/unnamed-chunk-10-1.gif)<!-- -->
 
 Next, combine them using `magick` (thanks to [this
 post](https://github.com/thomasp85/gganimate/wiki/Animation-Composition)):
