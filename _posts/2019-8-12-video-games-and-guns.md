@@ -190,3 +190,5 @@ oecd_joined %>%
 ```
 ![](gg-unnamed-chunk-9-1.png)<!-- -->
 
+![ScreenShot](/_assets/images/outputs/games-and-guns/unnamed-chunk-10-1.png)
+
