@@ -114,7 +114,7 @@ tx <- ggplot(data = merged, mapping = aes(x = long, y = lat, group = group, fill
 
 Here’s what the plot looks like before animation:
 
-![](unnamed-chunk-6-1.png)<!-- -->
+![](outputs/unnamed-chunk-6-1.png)<!-- -->
 
 ### Rayshader
 
