@@ -114,7 +114,7 @@ tx <- ggplot(data = merged, mapping = aes(x = long, y = lat, group = group, fill
 
 Here’s what the plot looks like before animation:
 
-![](outputs/tx-vaccination/unnamed-chunk-6-1.png)<!-- -->
+![](_assets/images/outputs/tx-vaccination/unnamed-chunk-6-1.png)<!-- -->
 
 ### Rayshader
 
@@ -150,4 +150,4 @@ render_movie(filename = "./Outputs/tx_vac_vid", type = "custom",
 
 You can see the output [here](https://imgur.com/a/zFWGh1R):
 
-![](outputs/tx-vaccination/unnamed-chunk-7-1.png)<!-- -->
+![](_assets/images/outputs/tx-vaccination/unnamed-chunk-7-1.png)<!-- -->
