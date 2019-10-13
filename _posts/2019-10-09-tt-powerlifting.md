@@ -217,4 +217,4 @@ for(i in 2:250){
 new_gif
 ```
 
-![](_posts/outputs/tt-powerlifting/unnamed-chunk-11-1.gif)<!-- -->
+![](outputs/tt-powerlifting/unnamed-chunk-11-1.gif)<!-- -->
