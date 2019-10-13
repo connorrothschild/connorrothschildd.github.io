@@ -1,6 +1,11 @@
 ---
-layout: post
-title: Games and Guns
+title: "Games and Guns"
+last_modified_at: 2019-8-12T16:20:02-05:00
+categories:
+  - Blog
+tags:
+  - r
+  - data viz
 ---
 
 Is there a relationship between video game sales per capita and gun violence, as Republicans suggest? 
@@ -159,7 +164,7 @@ oecd_joined %>%
   drop_axis(axis = "y")
 ```
 
-![](_assets/images_outputs/games-and-guns/unnamed-chunk-10-1.png)<!-- -->
+![](_gg-unnamed-chunk-10-1.png)<!-- -->
 
 To conclude, let’s add an emoji to fully capture our skepticism with the
 [newfound
@@ -183,7 +188,6 @@ oecd_joined %>%
   drop_axis(axis = "y") +
   geom_text(y = 4.85, x = 107.5, size = 7, label = emoji('thinking'), family = "EmojiOne")
 ```
-<figure>
-  <img src="_assets/images_outputs/games-and-guns/unnamed-chunk-11-1.png" alt="this is a placeholder image">
+![](gg-unnamed-chunk-9-1.png)<!-- -->
   <figcaption>This is a figure caption.</figcaption>
 </figure>
