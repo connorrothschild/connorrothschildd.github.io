@@ -1,6 +1,11 @@
 ---
-layout: post
-title: Games and Guns
+title: "Games and Guns"
+last_modified_at: 2019-8-12T16:20:02-05:00
+categories:
+  - Blog
+tags:
+  - r
+  - data viz
 ---
 
 Is there a relationship between video game sales per capita and gun violence, as Republicans suggest? 
