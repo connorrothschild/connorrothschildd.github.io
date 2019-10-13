@@ -164,7 +164,7 @@ oecd_joined %>%
   drop_axis(axis = "y")
 ```
 
-![](_gg-unnamed-chunk-10-1.png)<!-- -->
+![](gg-unnamed-chunk-10-1.png)<!-- -->
 
 To conclude, let’s add an emoji to fully capture our skepticism with the
 [newfound

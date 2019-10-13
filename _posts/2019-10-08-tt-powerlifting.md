@@ -128,7 +128,7 @@ max_lifts_final %>%
                      color="grey20", size=4, vjust=-3, fontface="bold")
 ```
 
-![](outputs/tt-powerlifting/unnamed-chunk-8-1.png)<!-- -->
+![](/outputs/tt-powerlifting/unnamed-chunk-8-1.png)<!-- -->
 
 Finally, we animate, using Thomas Pedersen’s wonderful [gganimate
 package](https://github.com/thomasp85/gganimate):
@@ -217,5 +217,5 @@ for(i in 2:250){
 new_gif
 ```
 
-![](outputs/tt-powerlifting/unnamed-chunk-11-1.gif)<!-- -->
+![](/outputs/tt-powerlifting/unnamed-chunk-11-1.gif)<!-- -->
 ![](_posts/outputs/games-and-guns/unnamed-chunk-10-1.png)<!-- -->
