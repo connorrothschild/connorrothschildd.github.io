@@ -57,7 +57,7 @@ plugins:
 
 author:
   name   : "Connor Rothschild"
-  avatar : "/assets/images/headshotCircle.png"
+  avatar : "/_assets/images/headshotCircle.png"
   bio    : "Student, Rice University"
   links:
     - label: "Website"
