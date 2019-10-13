@@ -189,5 +189,4 @@ oecd_joined %>%
   geom_text(y = 4.85, x = 107.5, size = 7, label = emoji('thinking'), family = "EmojiOne")
 ```
 ![](gg-unnamed-chunk-9-1.png)<!-- -->
-  <figcaption>This is a figure caption.</figcaption>
-</figure>
+
