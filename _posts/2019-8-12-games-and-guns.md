@@ -184,6 +184,6 @@ oecd_joined %>%
   geom_text(y = 4.85, x = 107.5, size = 7, label = emoji('thinking'), family = "EmojiOne")
 ```
 <figure>
-  <img src="_assets/images_outputs/games-and-guns/unnamed-chunk-11-1.png" alt="this is a placeholder image">
+  <img src="outputs/games-and-guns/unnamed-chunk-11-1.png" alt="this is a placeholder image">
   <figcaption>This is a figure caption.</figcaption>
 </figure>
