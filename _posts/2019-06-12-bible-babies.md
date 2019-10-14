@@ -1,6 +1,6 @@
 ---
 title: "Bible Babies: Exploring Biblically-Inspired Baby Names over Time"
-date: "6/4/2019"
+date: "2019-06-12"
 category: R
 tags: [r, statistics]
 comments: true

@@ -1,6 +1,6 @@
 ---
 title: "The Race for Media Attention"
-date: "5/30/2019"
+date: "2019-05-30"
 category: R
 tags: [r, statistics, visualization]
 comments: true

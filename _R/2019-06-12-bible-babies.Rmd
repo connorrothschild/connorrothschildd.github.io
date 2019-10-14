@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bible Babies: Exploring Biblically-Inspired Baby Names over Time"
-date: "6/4/2019"
+date: "2019-06-12"
 # output: github_document
 # editor_options:
 #   chunk_output_type: console

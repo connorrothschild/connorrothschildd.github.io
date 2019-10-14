@@ -1,6 +1,6 @@
 ---
 title: "Tidy Tuesday: Powerlifting"
-date: "10/8/2019"
+date: "2019-10-08"
 category: R
 tags: [r, visualization, animation]
 comments: true

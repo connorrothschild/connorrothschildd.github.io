@@ -1,6 +1,6 @@
 ---
 title: "Automation and Its Impact on Jobs"
-date: "5/10/2018"
+date: "2018-05-10"
 category: R
 tags: [r, statistics, visualization]
 comments: true
