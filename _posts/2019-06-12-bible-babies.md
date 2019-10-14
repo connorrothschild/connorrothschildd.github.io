@@ -142,7 +142,7 @@ animate(maleanimation, fps = 25, duration = 25, width = 800, height = 600)
 {% endhighlight %}
 
 
-![center](/_R/figs/2019-06-12-bible-babies/unnamed-chunk-6-1.gif)
+![center](/figs/2019-06-12-bible-babies/unnamed-chunk-6-1.gif)
 
 Replicating that code with minor tweaks creates the same animation for girls' names:
 
@@ -184,7 +184,7 @@ animate(femaleanimation, fps = 25, duration = 25, width = 800, height = 600)
 {% endhighlight %}
 
 
-![center](/_R/figs/2019-06-12-bible-babies/unnamed-chunk-7-1.gif)
+![center](/figs/2019-06-12-bible-babies/unnamed-chunk-7-1.gif)
 
 {% highlight r %}
         #, renderer = gifski_renderer("girlbiblebabies.gif"))
@@ -227,5 +227,5 @@ babyanimation <- babynamesrank %>%
 animate(babyanimation, fps = 25, duration = 25, width = 800, height = 600)
 {% endhighlight %}
 
-![center](/_R/figs/2019-06-12-bible-babies/unnamed-chunk-7-1.gif)
+![center](/figs/2019-06-12-bible-babies/unnamed-chunk-7-1.gif)
 
