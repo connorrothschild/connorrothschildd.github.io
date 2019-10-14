@@ -20,7 +20,7 @@ library(knitr)
 kable(head(babynames))
 ```
 
-```{r load ggplot theme, include=FALSE}
+```{r, include=FALSE}
 library(ggplot2)
 theme_cr <- function () {
   theme_bw(base_size=12, base_family="sans") %+replace% 
@@ -39,7 +39,7 @@ theme_set(theme_cr())
 
 In order to determine the popularity of "Bible babies," we need a list of names found in the Bible in order to search the *babynames* dataset. I pulled a random list of Bible baby names from [babycentre.co.uk](https://www.babycentre.co.uk/a1025984/baby-names-from-the-bible). The list likely doesn't include *all* names found in the Bible (only popular baby names), but that's probably no big deal considering few, if any, parents name their child Athaliah. 
 
-``` {r, dpi = 18}
+``` {r}
 library(readxl)
 library(tidyverse)
 biblenames <- read_excel("biblebabynames.xlsx")
@@ -101,7 +101,7 @@ Indeed, much of the departure from Biblically-inspired baby names has been drive
 
 Finally, we can incorporate Thomas Lin Pedersen's [*gganimate* package](https://github.com/thomasp85/gganimate) to explore the popularity of *specific Bible names* over time. This was inspired by Kieran Healy's [similar visualization](https://kieranhealy.org/blog/archives/2019/05/13/baby-name-animation/) depicting changes in the structure of babies' names over time. The below code creates a GIF showing the shifting popularity of boys' names over time.
 
-```{r, dpi=18, out.width="800px", out.height="600px"}
+```{r}
 library(gganimate)
 # make male rank variable
 malebabynames <- babynames %>%
@@ -140,7 +140,7 @@ animate(maleanimation, fps = 25, duration = 25, width = 800, height = 600, rende
 
 Replicating that code with minor tweaks creates the same animation for girls' names:
 
-```{r, dpi=18, out.width="800px", out.height="600px"}
+```{r]
 # make rank variable
 femalebabynames <- babynames %>%
   filter(sex=="F") %>% 
@@ -178,7 +178,7 @@ animate(femaleanimation, fps = 25, duration = 25, width = 800, height = 600, ren
 
 Finally, we can combine some of the insights from our earlier plot (depicting the popularity of Biblical names by sex) to show which boys' names are responsible for their sex's relative dominance over girls' Biblically-inspired names.
 
-```{r, dpi=18, out.width="800px", out.height="600px"}
+```{r}
 # make rank variable
 babynamesrank <- babynames %>%
   group_by(year) %>%
