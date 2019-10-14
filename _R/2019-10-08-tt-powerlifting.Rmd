@@ -17,6 +17,7 @@ library(ggplot2)
 library(tidyverse)
 library(cr)
 conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("scale_colour_discrete", "cr")
 
 set_cr_theme(font = "lato")
 ```
@@ -155,7 +156,6 @@ a_gif <- animate(animation,
                  fps = 10, 
                  duration = 25,
         width = 800, height = 400)
-#, renderer = gifski_renderer("./animation.gif"))
 
 a_gif
 ```
@@ -186,8 +186,6 @@ b_gif <- animate(animation2,
                  fps = 10, 
                  duration = 25,
         width = 800, height = 200)
-#, renderer = gifski_renderer("./animation2.gif"))
-
 b_gif
 ```
 

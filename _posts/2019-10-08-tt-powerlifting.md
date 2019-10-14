@@ -15,6 +15,8 @@ My Tidy Tuesday submission for the week of October 8, 2019, focusing on internat
 library(ggplot2)
 library(tidyverse)
 library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("scale_colour_discrete", "cr")
 
 set_cr_theme(font = "lato")
 {% endhighlight %}
@@ -131,7 +133,7 @@ max_lifts_final %>%
                      color="grey20", size=4, vjust=-3, fontface="bold")
 {% endhighlight %}
 
-![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-8-1.png)
+![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-11-1.png)
 
 Finally, we animate, using Thomas Pedersen's wonderful [gganimate package](https://github.com/thomasp85/gganimate):
 
@@ -166,12 +168,12 @@ a_gif <- animate(animation,
 {% endhighlight %}
 
 
-{% highlight r %}
 
+{% highlight r %}
 a_gif
 {% endhighlight %}
 
-![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-9-1.gif)
+![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-12-1.gif)
 
 I'd like to include another GIF: a line chart of differences over time
 
@@ -203,11 +205,13 @@ b_gif <- animate(animation2,
 {% endhighlight %}
 
 
+
+
 {% highlight r %}
 b_gif
 {% endhighlight %}
 
-![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-10-1.gif)
+![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-13-1.gif)
 
 Next, combine them using `magick` (thanks to [this
 post](https://github.com/thomasp85/gganimate/wiki/Animation-Composition)):
@@ -227,5 +231,5 @@ for(i in 2:250){
 new_gif
 {% endhighlight %}
 
-![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-11-1.gif)
+![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-14-1.gif)
 

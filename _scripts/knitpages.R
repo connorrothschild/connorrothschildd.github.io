@@ -39,5 +39,5 @@ knit_folder <- function(infolder, outfolder, figsfolder, cachefolder, knit_all =
     }
   }
 
-knit_folder("_R", "_posts", "figs/", "_caches/", knit_all = TRUE)
+knit_folder("_R", "_posts", "figs/", "_caches/", knit_all = FALSE)
 #knit_folder("_R/drafts", "_drafts", "figs/drafts/")

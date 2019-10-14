@@ -18,11 +18,13 @@ library(readr)
 library(readxl)
 library(tidyverse)
 library(ggplot2)
-library(tpltheme)
 library(showtext)
 library(emojifont)
+library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("scale_colour_discrete", "cr")
 
-set_tpl_theme(font = "lato")
+set_cr_theme(font = "lato")
 {% endhighlight %}
 
 ### Load Data
