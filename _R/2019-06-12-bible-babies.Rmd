@@ -101,7 +101,7 @@ Indeed, much of the departure from Biblically-inspired baby names has been drive
 
 Finally, we can incorporate Thomas Lin Pedersen's [*gganimate* package](https://github.com/thomasp85/gganimate) to explore the popularity of *specific Bible names* over time. This was inspired by Kieran Healy's [similar visualization](https://kieranhealy.org/blog/archives/2019/05/13/baby-name-animation/) depicting changes in the structure of babies' names over time. The below code creates a GIF showing the shifting popularity of boys' names over time.
 
-```{r}
+```{r, message = FALSE}
 library(gganimate)
 # make male rank variable
 malebabynames <- babynames %>%
@@ -135,12 +135,13 @@ maleanimation <- malebabynames %>%
   transition_states(year, transition_length = 4, state_length = 1) +
   ease_aes('cubic-in-out')
 
-animate(maleanimation, fps = 25, duration = 25, width = 800, height = 600, renderer = gifski_renderer("boybiblebabies.gif"))
+animate(maleanimation, fps = 25, duration = 25, width = 800, height = 600)
+        #, renderer = gifski_renderer("boybiblebabies.gif"))
 ```
 
 Replicating that code with minor tweaks creates the same animation for girls' names:
 
-```{r]
+```{r, message = FALSE}
 # make rank variable
 femalebabynames <- babynames %>%
   filter(sex=="F") %>% 
@@ -173,12 +174,13 @@ femaleanimation <- femalebabynames %>%
   transition_states(year, transition_length = 4, state_length = 1) +
   ease_aes('cubic-in-out')
 
-animate(femaleanimation, fps = 25, duration = 25, width = 800, height = 600, renderer = gifski_renderer("girlbiblebabies.gif"))
+animate(femaleanimation, fps = 25, duration = 25, width = 800, height = 600)
+        #, renderer = gifski_renderer("girlbiblebabies.gif"))
 ```
 
 Finally, we can combine some of the insights from our earlier plot (depicting the popularity of Biblical names by sex) to show which boys' names are responsible for their sex's relative dominance over girls' Biblically-inspired names.
 
-```{r}
+```{r, message = FALSE}
 # make rank variable
 babynamesrank <- babynames %>%
   group_by(year) %>%
@@ -209,5 +211,6 @@ babyanimation <- babynamesrank %>%
   transition_states(year, transition_length = 4, state_length = 1) +
   ease_aes('cubic-in-out')
 
-animate(babyanimation, fps = 25, duration = 25, width = 800, height = 600, renderer = gifski_renderer("combinedbiblebabies.gif"))
+animate(babyanimation, fps = 25, duration = 25, width = 800, height = 600)
+        #, renderer = gifski_renderer("combinedbiblebabies.gif"))
 ```

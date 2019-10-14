@@ -39,7 +39,7 @@ data <- read.csv("https://raw.githubusercontent.com/connorrothschild/media-menti
   #read.csv(("https://raw.githubusercontent.com/fivethirtyeight/data/master/media-mentions-2020/cable_weekly.csv"), header=T)
 ```
 
-```{r load ggplot theme, include=FALSE}
+```{r, include=FALSE}
 theme_cr <- function () {
   theme_bw(base_size=12, base_family="sans") %+replace% 
     theme(axis.ticks = element_line(colour = "black"), 
@@ -55,7 +55,7 @@ theme_cr <- function () {
 
 The dataset contains information on 22 presidential candidates, recording weekly the number of clips which mention a presidential candidate (*matched_clips*) and dividing them by the total number of clips that week (*total_clips*) to reveal the percent (*pct_of_all_candidate_clips*) of clips which mention that candidate.
 
-```{r preview, echo=FALSE}
+```{r, echo=FALSE}
 kable(head(data))
 ```
 
@@ -65,7 +65,7 @@ Of interest to us is the *name* of each candidate and the percent (*pct_of_all_c
 
 We can begin with a simple analysis of which candidates are discussed most frequently by the media by averaging their weekly proportion of mentions in the media.
 
-```{r plot}
+```{r}
 data %>% 
   group_by(name) %>% 
   summarise(pct_of_all_candidate_clips = mean(pct_of_all_candidate_clips)) %>% 
@@ -83,7 +83,7 @@ Somewhat unsurprisingly. Joe Biden and Bernie Sanders lead the pack in media att
 
 How has that coverage changed over time?
 
-```{r over time}
+```{r}
 data %>% 
   group_by(name) %>% 
   filter(mean(pct_of_all_candidate_clips) > .05) %>% # filter out unpopular candidates for plot clarity
@@ -110,7 +110,7 @@ data %>%
 
 Evidently, much of Joe Biden's popularity in the media can be explained by a few large spikes in weekly media mentions. We can explore the distribution of weekly media mentions using a visualization known as a [density ridge plot](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html).
 
-```{r density}
+```{r}
 data %>% 
   group_by(name) %>% 
   filter(mean(pct_of_all_candidate_clips) > 0.1) %>% 
@@ -134,7 +134,7 @@ This raises an interesting question: when did candidates experience the most dra
 
 We can answer this question by calculating the difference between one week's coverage and the prior week's coverage (using the [lag](https://www.rdocumentation.org/packages/stats/versions/3.6.0/topics/lag) function).
 
-```{r lag}
+```{r}
 data %>% 
   group_by(name) %>% 
   mutate(change = (pct_of_all_candidate_clips-(dplyr::lag(pct_of_all_candidate_clips, n=1, default=NA)))) %>% 
@@ -158,7 +158,7 @@ By constructing a [bump chart](https://learnr.wordpress.com/2009/05/06/ggplot2-b
 
 As an added benefit, this plot was difficult to construct and so it was rewarding to finally finish.
 
-```{r bump chart}
+```{r}
 # create extended color palette for 22 candidates
 nb.cols <- 22
 mycolors <- colorRampPalette(brewer.pal(8, "RdYlBu"))(nb.cols)

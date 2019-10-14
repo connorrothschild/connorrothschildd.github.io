@@ -127,7 +127,7 @@ max_lifts_final %>%
 
 Finally, we animate, using Thomas Pedersen's wonderful [gganimate package](https://github.com/thomasp85/gganimate):
 
-```{r}
+```{r, message = FALSE}
 library(gganimate)
 animation <- max_lifts_final %>% 
   ggplot() + 
@@ -153,15 +153,15 @@ animation <- max_lifts_final %>%
 a_gif <- animate(animation, 
                  fps = 10, 
                  duration = 25,
-        width = 800, height = 400, 
-        renderer = gifski_renderer("./animation.gif"))
+        width = 800, height = 400)
+#, renderer = gifski_renderer("./animation.gif"))
 
 a_gif
 ```
 
 I'd like to include another GIF: a line chart of differences over time
 
-```{r}
+```{r, message = FALSE}
 animation2 <- max_lifts_final %>% 
   ungroup %>% 
   mutate(lift = case_when(lift == "best3bench_kg" ~ "Bench",
@@ -184,8 +184,8 @@ animation2 <- max_lifts_final %>%
 b_gif <- animate(animation2, 
                  fps = 10, 
                  duration = 25,
-        width = 800, height = 200, 
-        renderer = gifski_renderer("./animation2.gif"))
+        width = 800, height = 200)
+#, renderer = gifski_renderer("./animation2.gif"))
 
 b_gif
 ```
@@ -193,7 +193,7 @@ b_gif
 Next, combine them using `magick` (thanks to [this
 post](https://github.com/thomasp85/gganimate/wiki/Animation-Composition)):
 
-```{r}
+```{r, message = FALSE}
 library(magick)
 a_mgif <- image_read(a_gif)
 b_mgif <- image_read(b_gif)
