@@ -35,18 +35,6 @@ There are three datasets for this project.
 
 
 {% highlight r %}
-setwd("/Users/connorrothschild/Desktop/R/Automation Project")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in setwd("/Users/connorrothschild/Desktop/R/Automation Project"): cannot change working directory
-{% endhighlight %}
-
-
-
-{% highlight r %}
 education <- read_excel("education.xlsx", skip=1)
 salary <- read_excel("national_M2017_dl.xlsx")
 automation <- read_excel("raw_state_automation_data.xlsx")

@@ -35,7 +35,6 @@ There are three datasets for this project.
 3) Risk of automation broken down by occupation, provided by Carl Benedikt Frey and Michael A. Osborne (but compiled [here](https://data.world/wnedds/occupations-by-state-and-likelihood-of-automation))
 
 ```{r datasets}
-setwd("/Users/connorrothschild/Desktop/R/Automation Project")
 education <- read_excel("education.xlsx", skip=1)
 salary <- read_excel("national_M2017_dl.xlsx")
 automation <- read_excel("raw_state_automation_data.xlsx")
