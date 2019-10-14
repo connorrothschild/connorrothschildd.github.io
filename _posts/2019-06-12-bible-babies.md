@@ -1,20 +1,15 @@
 ---
-layout: post
 title: "Bible Babies: Exploring Biblically-Inspired Baby Names over Time"
 date: "6/4/2019"
-# output: github_document
-# editor_options:
-#   chunk_output_type: console
-category: r
+category: R
 tags: [r, statistics]
 comments: true
 ---
 
 
+The goal of this post is to explore how baby names have changed over time. 
 
-## Goal
-
-The goal of this post is to explore how baby names have changed over time. More specifically, I'm focusing on the decision to name one's baby after a Biblical figure. I'm curious if the popularity of Biblically-inspired baby names has changed over time. We're able to explore this question using the [*babynames* package](https://cran.r-project.org/web/packages/babynames/babynames.pdf) in R, which contains historical data from the U.S. Social Security Administration ranging back to 1880. It contains information on the number of babies born with a certain name in a given year, the sex of those babies, the year they were born, and their name (obviously).
+More specifically, I'm focusing on the decision to name one's baby after a Biblical figure. I'm curious if the popularity of Biblically-inspired baby names has changed over time. We're able to explore this question using the [*babynames* package](https://cran.r-project.org/web/packages/babynames/babynames.pdf) in R, which contains historical data from the U.S. Social Security Administration ranging back to 1880. It contains information on the number of babies born with a certain name in a given year, the sex of those babies, the year they were born, and their name (obviously).
 
 
 {% highlight r %}

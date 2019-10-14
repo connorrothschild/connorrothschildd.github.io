@@ -2,14 +2,11 @@
 title: "Automation and Its Impact on Jobs"
 date: "5/10/2018"
 category: R
-# output: github_document
 tags: [r, statistics, visualization]
 comments: true
 ---
 
 
-
-### Goal
 The goal of this project is to understand the relationship between income, education, and automation. It asks the following: **Is a given job's income correlated to its likelihood of automation? Are jobs which are predominantly less educated more or less likely to be automated? How many workers are in the industries that will be automated?**
 
 

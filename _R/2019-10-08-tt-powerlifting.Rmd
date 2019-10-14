@@ -1,11 +1,12 @@
 ---
-layout: post
 title: "Tidy Tuesday: Powerlifting"
 date: "10/8/2019"
-category: r
+category: R
 tags: [r, visualization, animation]
 comments: true
 ---
+
+My Tidy Tuesday submission for the week of October 8, 2019, focusing on international powerlifting competitions.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)

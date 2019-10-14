@@ -6,9 +6,10 @@ tags: [r, statistics, visualization]
 comments: true
 ---
 
+In this post, I explore which presidential candidates are discussed most frequently in the American news media.
 
-
-NOTE: This post has become somewhat outdated since it's [original publication](https://connorrothschild.github.io/media-mentions/) because the dataset (linked via FiveThirtyEight's GitHub) has changed variable names and some of the data has changed. 
+### NOTE
+This post has become somewhat outdated since it's [original publication](https://connorrothschild.github.io/media-mentions/) because the dataset (linked via FiveThirtyEight's GitHub) has changed variable names and some of the data has changed. 
 
 You can find a less technical version of this post without code [on my blog](https://www.connorrothschild.com/single-post/2019/05/30/The-Race-for-Media-Attention).
 

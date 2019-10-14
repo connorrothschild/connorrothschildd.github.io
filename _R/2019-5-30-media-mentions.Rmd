@@ -1,10 +1,12 @@
 ---
 title: "The Race for Media Attention"
 date: "5/30/2019"
-category: r
+category: R
 tags: [r, statistics, visualization]
 comments: true
 ---
+
+In this post, I explore which presidential candidates are discussed most frequently in the American news media.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,

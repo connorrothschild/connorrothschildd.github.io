@@ -1,8 +1,7 @@
 ---
-layout: post
 title: "STEMigration: Leaving and Entering STEM Fields During College"
 date: "3/11/2019"
-category: r
+category: R
 tags: [r, statistics, visualization]
 comments: true
 ---
