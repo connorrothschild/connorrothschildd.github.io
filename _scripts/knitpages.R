@@ -14,7 +14,7 @@ KnitPost <- function(input, outfile, figsfolder, cachefolder, base.url="/") {
   opts_chunk$set(fig.path = fig.path)
   opts_chunk$set(cache.path = cache.path)
   opts_chunk$set(fig.cap = "center")
-  render_markdown()
+  render_jekyll()
   knit(input, outfile, envir = parent.frame())
 }
 

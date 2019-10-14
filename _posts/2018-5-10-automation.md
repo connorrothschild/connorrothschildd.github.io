@@ -1,7 +1,7 @@
 ---
 title: "Automation and Its Impact on Jobs"
 date: "5/10/2018"
-category: r
+category: R
 # output: github_document
 tags: [r, statistics, visualization]
 comments: true
@@ -13,7 +13,7 @@ comments: true
 The goal of this project is to understand the relationship between income, education, and automation. It asks the following: **Is a given job's income correlated to its likelihood of automation? Are jobs which are predominantly less educated more or less likely to be automated? How many workers are in the industries that will be automated?**
 
 
-```r
+{% highlight r %}
 library(ggplot2)
 library(ggthemes)
 library(dplyr)
@@ -24,7 +24,7 @@ library(tidyverse)
 library(knitr)
 options(scipen=999)
 theme_set(theme_minimal())
-```
+{% endhighlight %}
 
 ### Load datasets: 
 There are three datasets for this project.
@@ -33,18 +33,18 @@ There are three datasets for this project.
 3) Risk of automation broken down by occupation, provided by Carl Benedikt Frey and Michael A. Osborne (but compiled [here](https://data.world/wnedds/occupations-by-state-and-likelihood-of-automation))
 
 
-```r
+{% highlight r %}
 education <- read_excel("education.xlsx", skip=1)
 salary <- read_excel("national_M2017_dl.xlsx")
 automation <- read_excel("raw_state_automation_data.xlsx")
-```
+{% endhighlight %}
 
 ## Analysis
 
 I'll begin by finding which occupations contribute most to the American economy (in USD).
 
 
-```r
+{% highlight r %}
 salary1 <- salary %>% 
   group_by(OCC_TITLE) %>% 
   mutate(natlwage = TOT_EMP * as.numeric(A_MEAN)) %>%
@@ -60,7 +60,7 @@ options(scipen=999)
 salary2 %>%
   arrange(desc(natlwage)) %>% 
   head() %>% kable()
-```
+{% endhighlight %}
 
 
 
@@ -78,7 +78,7 @@ Management occupations contribute the most, followed by office and administrativ
 This is a quick vizualization which represents the relationship between a job's median wage and the number of Americans which have that job.
 
 
-```r
+{% highlight r %}
 salary2 %>% filter(TOT_EMP < 15000000) %>%
   ggplot(mapping=aes(x=TOT_EMP, y=A_MEDIAN)) +
   geom_point(alpha=1/3, col="red") +
@@ -86,7 +86,7 @@ salary2 %>% filter(TOT_EMP < 15000000) %>%
   ggtitle("Median Wage vs Total Employment") +
   xlab("Number of Americans in a Given Job") +
   ylab("Median Wage of a Given Job") 
-```
+{% endhighlight %}
 
 ![center](/figs/2018-5-10-automation/wagevsemployment-1.png)
 
@@ -101,7 +101,7 @@ We now have three data points:
 Next, I want to cross-reference the salary data with the education data. 
 
 
-```r
+{% highlight r %}
 library(plyr)
 education1 <- education %>% select(-...2)
   
@@ -121,19 +121,19 @@ education2 <- education1 %>%
          postgrad = masters + professional)
 
 education2 <- education2 %>% drop_na()
-```
+{% endhighlight %}
 
 Next, I want to join education2 and salary2 to start analysis of education's effect on salary.
 
 
-```r
+{% highlight r %}
 salary2 <- rename(salary2, c("OCC_TITLE" = "occupation"))
 salary2$occupation <- tolower(salary2$occupation)
 education2$occupation <- tolower(education2$occupation)
 edsal <- merge(as.data.frame(education2), as.data.frame(salary2), by="occupation") %>% drop_na()
 
 head(edsal) %>% kable()
-```
+{% endhighlight %}
 
 
 
@@ -151,7 +151,7 @@ At this point I'm realizing that having the educational breakdown (# of Bachelor
 So, I'm going to introduce a fourth dataset: the *typical* education of a worker in a given occupation, also provided by BLS and found [here](https://www.bls.gov/emp/tables/education-and-training-by-occupation.htm).
 
 
-```r
+{% highlight r %}
 typicaleducation <- read_excel("typicaleducation.xlsx")
 typicaleducation2 <- typicaleducation %>% select(occupation,typicaled,workexp)
 typicaleducation2 <- typicaleducation2 %>% drop_na()
@@ -159,7 +159,7 @@ typicaleducation2$occupation <- tolower(typicaleducation2$occupation)
 edsal2 <- merge(as.data.frame(edsal), as.data.frame(typicaleducation2), by="occupation")
 
 head(edsal2) %>% kable()
-```
+{% endhighlight %}
 
 
 
@@ -175,7 +175,7 @@ head(edsal2) %>% kable()
 This data allows us to ask: **What is the median wage for each typical level of education?**
 
 
-```r
+{% highlight r %}
 detach(package:plyr)
 edsal3 <- edsal2 %>% 
   group_by(typicaled) %>% 
@@ -192,7 +192,7 @@ ggplot(data=edsal3, aes(x = reorder(typicaled, medianwage), y = medianwage)) +
   scale_fill_discrete(breaks=legend_ord) +
   theme_minimal() +
   theme(axis.text.x=element_blank())
-```
+{% endhighlight %}
 
 ![center](/figs/2018-5-10-automation/wagebyedu-1.png)
 
@@ -201,11 +201,11 @@ The results are unsurpising: more educated people on average earn more.
 Lastly, I bring in the automation data.
 
 
-```r
+{% highlight r %}
 automationwstates <- automation %>% select(-soc)
 automation1 <- automationwstates %>% select(occupation,probability,total)
 head(automation) %>% kable()
-```
+{% endhighlight %}
 
 
 
@@ -221,7 +221,7 @@ head(automation) %>% kable()
 Next, I visualize the probability of automation vs total employment:
 
 
-```r
+{% highlight r %}
 automation1 %>%
   ggplot(mapping=aes(x=total, y=probability)) +
   geom_point(alpha=1/3, col="blue") +
@@ -231,7 +231,7 @@ automation1 %>%
   ylab("Probability of Automation") +
   geom_label_repel(data=subset(automation1, total > 4000000),
                    aes(total, probability,label=occupation), label.size=.5, label.r=.05, size=2.5, nudge_y = .05, nudge_x= -10000)
-```
+{% endhighlight %}
 
 ![center](/figs/2018-5-10-automation/autoviz-1.png)
 
@@ -240,16 +240,16 @@ There doesn't seem to be a huge relationship between automation and number of em
 Some final data cleaning, and the merge of the final dataset:
 
 
-```r
+{% highlight r %}
 automation1$occupation <- str_replace_all(automation1$occupation, ";", ",")
 automation1$occupation <- tolower(automation$occupation)
 data <- merge(as.data.frame(edsal2), as.data.frame(automation1), by="occupation")
-```
+{% endhighlight %}
 
 We can create an initial visualization of the relationship between automation risk and education level.
 
 
-```r
+{% highlight r %}
 autovsedu <- data %>% 
   group_by(typicaled) %>% 
   summarise(medianwage = mean(A_MEDIAN),
@@ -266,7 +266,7 @@ ggplot(data=autovsedu, aes(x = reorder(typicaled, -averageprobability), y = aver
   scale_fill_discrete(breaks=legend_ord2) +
   theme_minimal() +
   theme(axis.text.x=element_blank())
-```
+{% endhighlight %}
 
 ![center](/figs/2018-5-10-automation/firstlook-1.png)
 
@@ -275,7 +275,7 @@ There is a rather clear correlation between level of education and automation ri
 We can then visualize this relationship by individual occupation:
 
 
-```r
+{% highlight r %}
 ggplot(data=data) +
   geom_point(mapping=aes(x=A_MEDIAN, y=probability, size=TOT_EMP, alpha=1/10, col=typicaled))+
   scale_size(range = c(1, 20)) +
@@ -289,14 +289,14 @@ ggplot(data=data) +
   theme(legend.text = element_text(colour="black", size = 10)) +
   guides(col = guide_legend(override.aes = list(size=5))) +
   theme_minimal()
-```
+{% endhighlight %}
 
 ![center](/figs/2018-5-10-automation/viz2-1.png)
 
 With labels, a final look:
 
 
-```r
+{% highlight r %}
 data$occupation <- toTitleCase(data$occupation)
 
 ggplot(data=data) +
@@ -322,7 +322,7 @@ ggplot(data=data) +
   annotate("text", x = 165000, y = -0.035, label = "Highest salary,\n lowest automation risk", size=3, fontface=2) +
   annotate("text", x = 45000, y = -0.035, label = "Lowest salary,\n lowest automation risk", size=3, fontface=2) +
   annotate("text", x = 45000, y = 1.03, label = "Lowest salary,\n highest automation risk", size=3, fontface=2)
-```
+{% endhighlight %}
 
 ![center](/figs/2018-5-10-automation/finalviz-1.png)
 

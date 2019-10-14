@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Texas Vaccination Rates (How to Use Rayshader)"
 date: "7/24/2019"
 category: r
@@ -30,7 +29,7 @@ library(knitr)
 
 ### Read in Data
 ```{r}
-tx_vac <- read_excel("./Data/2018-2019 School Vaccination Coverage Levels - Kindergarten (XLS) .xlsx", skip = 2)
+tx_vac <- read_excel("2018-2019 School Vaccination Coverage Levels - Kindergarten (XLS) .xlsx", skip = 2)
 
 kable(head(tx_vac))
 ```
