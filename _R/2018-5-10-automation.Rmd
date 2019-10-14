@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Automation and Its Impact on Jobs"
 date: "5/10/2018"
 category: r
