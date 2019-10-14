@@ -189,7 +189,8 @@ b_gif <- animate(animation2,
 b_gif
 ```
 
-Next, combine them using `magick` (thanks to [this post](https://github.com/thomasp85/gganimate/wiki/Animation-Composition)):
+Next, combine them using `magick` (thanks to [this
+post](https://github.com/thomasp85/gganimate/wiki/Animation-Composition)):
 
 ```{r}
 library(magick)
