@@ -14,6 +14,9 @@ KnitPost <- function(input, outfile, figsfolder, cachefolder, base.url="/") {
   opts_chunk$set(fig.path = fig.path)
   opts_chunk$set(cache.path = cache.path)
   opts_chunk$set(fig.cap = "center")
+  opts_chunk$set(dpi = 300)
+  opts_chunk$set(fig.width = 12) 
+  opts_chunk$set(fig.height = 8)
   render_jekyll()
   knit(input, outfile, envir = parent.frame())
 }
@@ -32,7 +35,6 @@ knit_folder <- function(infolder, outfolder, figsfolder, cachefolder) {
       KnitPost(infile, outfile, figsfolder, cachefolder)
     }
   }
-}
 
 knit_folder("_R", "_posts", "figs/", "_caches/")
 #knit_folder("_R/drafts", "_drafts", "figs/drafts/")

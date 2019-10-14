@@ -9,7 +9,7 @@ comments: true
 The goal of this project is to understand the relationship between income, education, and automation. It asks the following: **Is a given job's income correlated to its likelihood of automation? Are jobs which are predominantly less educated more or less likely to be automated? How many workers are in the industries that will be automated?**
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE, fig.width = 12, fig.height = 8)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
 ```{r packages}
