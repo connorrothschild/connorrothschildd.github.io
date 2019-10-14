@@ -1,13 +1,14 @@
 ---
 title: "Automation and Its Impact on Jobs"
-date: "5/10/2018"
+date: "2018-05-10"
 category: R
 tags: [r, statistics, visualization]
 comments: true
 ---
 
-
 The goal of this project is to understand the relationship between income, education, and automation. It asks the following: **Is a given job's income correlated to its likelihood of automation? Are jobs which are predominantly less educated more or less likely to be automated? How many workers are in the industries that will be automated?**
+
+
 
 
 {% highlight r %}
@@ -85,7 +86,7 @@ salary2 %>% filter(TOT_EMP < 15000000) %>%
   ylab("Median Wage of a Given Job") 
 {% endhighlight %}
 
-![center](/figs/2018-5-10-automation/wagevsemployment-1.png)
+![center](/figs/2018-05-10-automation/wagevsemployment-1.png)
 
 We now have three data points: 
 
@@ -191,7 +192,7 @@ ggplot(data=edsal3, aes(x = reorder(typicaled, medianwage), y = medianwage)) +
   theme(axis.text.x=element_blank())
 {% endhighlight %}
 
-![center](/figs/2018-5-10-automation/wagebyedu-1.png)
+![center](/figs/2018-05-10-automation/wagebyedu-1.png)
 
 The results are unsurpising: more educated people on average earn more.
 
@@ -230,7 +231,7 @@ automation1 %>%
                    aes(total, probability,label=occupation), label.size=.5, label.r=.05, size=2.5, nudge_y = .05, nudge_x= -10000)
 {% endhighlight %}
 
-![center](/figs/2018-5-10-automation/autoviz-1.png)
+![center](/figs/2018-05-10-automation/autoviz-1.png)
 
 There doesn't seem to be a huge relationship between automation and number of employees, however there is some concentration at each of the poles.
 
@@ -265,7 +266,7 @@ ggplot(data=autovsedu, aes(x = reorder(typicaled, -averageprobability), y = aver
   theme(axis.text.x=element_blank())
 {% endhighlight %}
 
-![center](/figs/2018-5-10-automation/firstlook-1.png)
+![center](/figs/2018-05-10-automation/firstlook-1.png)
 
 There is a rather clear correlation between level of education and automation risk: those who are more educated are better protected from automation.
 
@@ -288,7 +289,7 @@ ggplot(data=data) +
   theme_minimal()
 {% endhighlight %}
 
-![center](/figs/2018-5-10-automation/viz2-1.png)
+![center](/figs/2018-05-10-automation/viz2-1.png)
 
 With labels, a final look:
 
@@ -321,7 +322,7 @@ ggplot(data=data) +
   annotate("text", x = 45000, y = 1.03, label = "Lowest salary,\n highest automation risk", size=3, fontface=2)
 {% endhighlight %}
 
-![center](/figs/2018-5-10-automation/finalviz-1.png)
+![center](/figs/2018-05-10-automation/finalviz-1.png)
 
 ### Conclusions
 

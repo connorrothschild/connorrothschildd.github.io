@@ -1,15 +1,12 @@
 ---
-layout: post
 title: "Games and Guns"
-date: "8/12/2019"
-# output: 
-#   github_document: 
-#     fig_width: 8.5
-#     fig_height: 4.8
-category: r
-tags: [r, statistics]
+date: "2019-08-12"
+category: R
+tags: [r, visualization]
 comments: true
 ---
+
+Is there a connection between video games and gun violence, as Republicans suggest?
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, fig.showtext = TRUE, message = FALSE)

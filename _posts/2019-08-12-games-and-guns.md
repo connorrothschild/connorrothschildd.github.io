@@ -1,15 +1,12 @@
 ---
-layout: post
 title: "Games and Guns"
-date: "8/12/2019"
-# output: 
-#   github_document: 
-#     fig_width: 8.5
-#     fig_height: 4.8
-category: r
-tags: [r, statistics]
+date: "2019-08-12"
+category: R
+tags: [r, visualization]
 comments: true
 ---
+
+Is there a connection between video games and gun violence, as Republicans suggest?
 
 
 
@@ -148,19 +145,7 @@ oecd_joined %>%
   drop_axis(axis = "y")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_colour_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_colour_discrete
-## * cr::scale_colour_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_colour_discrete", "tpltheme")
-## * conflict_prefer("scale_colour_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-8-12-games-and-guns/unnamed-chunk-9-1.png)
+![center](/figs/2019-08-12-games-and-guns/unnamed-chunk-9-1.png)
 
 Finally, we can focus on only OECD countries:
 
@@ -182,7 +167,7 @@ oecd_joined %>%
   drop_axis(axis = "y")
 {% endhighlight %}
 
-![center](/figs/2019-8-12-games-and-guns/unnamed-chunk-10-1.png)
+![center](/figs/2019-08-12-games-and-guns/unnamed-chunk-10-1.png)
 
 To conclude, let's add an emoji to fully capture our skepticism with the [newfound argument](https://www.cnn.com/2019/08/05/politics/kevin-mccarthy-mass-shootings-video-games/index.html) linking video games to violence.
 
@@ -205,4 +190,4 @@ oecd_joined %>%
   geom_text(y = 4.85, x = 107.5, size = 7, label = emoji('thinking'), family = "EmojiOne")
 {% endhighlight %}
 
-![center](/figs/2019-8-12-games-and-guns/unnamed-chunk-11-1.png)
+![center](/figs/2019-08-12-games-and-guns/unnamed-chunk-11-1.png)

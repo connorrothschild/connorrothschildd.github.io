@@ -2,15 +2,15 @@
 title: "STEMigration: Leaving and Entering STEM Fields During College"
 date: "2019-03-11"
 category: R
-tags: [r, statistics, visualization]
+tags: [r, visualization]
 comments: true
 ---
+
+The goal of this project is to explore trends in STEM enrollment for different populations. Specifically, it asks: **Are traditionally underrepresented groups more likely to migrate into or out of STEM majors? What discrepancies are present between different demographic groups?**
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, dev="png", fig.width=11, fig.height = 8)
 ```
-
-The goal of this project is to explore trends in STEM enrollment for different populations. Specifically, it asks: **Are traditionally underrepresented groups more likely to migrate into or out of STEM majors? What discrepancies are present between different demographic groups?**
 
 ```{r packages}
 library(readxl)

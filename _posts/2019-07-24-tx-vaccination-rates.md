@@ -6,11 +6,12 @@ tags: [r, visualization, animation]
 comments: true
 ---
 
-
-
 A brief exploration of Texas vaccination rates among kindergartners. Also an attempt to use `rayshader` for the first time.
 
+
+
 ### Load Packages
+
 
 {% highlight r %}
 library(readxl)
@@ -112,7 +113,7 @@ tx <- ggplot(data = merged, mapping = aes(x = long, y = lat, group = group, fill
 
 Here's what the plot looks like before animation:
 
-![center](/figs/2019-7-24-tx-vaccination-rates/unnamed-chunk-6-1.png)
+![center](/figs/2019-07-24-tx-vaccination-rates/unnamed-chunk-6-1.png)
 
 ### Rayshader
 

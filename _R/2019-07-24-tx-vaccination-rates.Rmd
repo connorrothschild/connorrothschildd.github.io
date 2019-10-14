@@ -6,13 +6,14 @@ tags: [r, visualization, animation]
 comments: true
 ---
 
+A brief exploration of Texas vaccination rates among kindergartners. Also an attempt to use `rayshader` for the first time.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-A brief exploration of Texas vaccination rates among kindergartners. Also an attempt to use `rayshader` for the first time.
-
 ### Load Packages
+
 ```{r}
 library(readxl)
 library(tidyverse)
