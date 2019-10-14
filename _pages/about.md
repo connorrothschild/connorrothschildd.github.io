@@ -1,8 +1,14 @@
 ---
 permalink: /about/
-title: "About"
+title: "Hi, I'm Connor Rothschild"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+I'm a junior at [Rice University](https://www.rice.edu) studying Social Policy Analysis and Political Science, and pursuing a minor in data science.
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+I'm currently working as an intern for the [Texas Policy Lab](https://www.texaspolicylab.org/profile/connor-rothschild/), a research fellow for the [Religion and Public Life Program at Rice University](https://rplp.rice.edu/staff-and-fellows), and a data science fellow with [Bluebonnet Data](https://www.bluebonnetdata.com).
+
+This website serves to host all of my technical writings. You'll find (almost exclusively) R scripts and data visualizations, but I'm also actively learning other tools like [D3.js](https://github.com/connorrothschild/D3.js) and [Python](https://github.com/connorrothschild/Python).
+
+If you'd like a more holistic view of my portfolio (not just code stuff!), you can find my other website [here](https://www.connorrothschild.com). I encourage you to connect with me on [LinkedIn](https://www.linkedin.com/in/connor-rothschild/), follow my [Twitter](https://twitter.com/CL_Rothschild), or check out my [CV](https://connorrothschild.github.io/markdown-cv/).
+
+Thanks for visiting!
