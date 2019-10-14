@@ -17,31 +17,19 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```{r}
 library(babynames)
 library(knitr)
-kable(head(babynames))
-```
-
-```{r, include=FALSE}
+library(readxl)
+library(tidyverse)
 library(ggplot2)
-theme_cr <- function () {
-  theme_bw(base_size=12, base_family="sans") %+replace% 
-    theme(axis.ticks = element_line(colour = "black"), 
-          legend.key = element_rect(colour = "grey80"), 
-          panel.background = element_blank(), 
-          panel.border = element_blank(), 
-          panel.grid.major = element_line(colour = "grey90", size = 0.2), 
-          panel.grid.minor = element_line(colour = "grey98", size = 0.5), 
-          strip.background = element_rect(fill = "grey80", colour = "grey50", 
-                                          size = 0.2))
-}
+library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
 
-theme_set(theme_cr())
+set_cr_theme(font = "lato")
+kable(head(babynames))
 ```
 
 In order to determine the popularity of "Bible babies," we need a list of names found in the Bible in order to search the *babynames* dataset. I pulled a random list of Bible baby names from [babycentre.co.uk](https://www.babycentre.co.uk/a1025984/baby-names-from-the-bible). The list likely doesn't include *all* names found in the Bible (only popular baby names), but that's probably no big deal considering few, if any, parents name their child Athaliah. 
 
 ``` {r}
-library(readxl)
-library(tidyverse)
 biblenames <- read_excel("biblebabynames.xlsx")
 
 boybible <- biblenames %>% 

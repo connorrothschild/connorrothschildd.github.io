@@ -25,6 +25,7 @@ library(mapdata)
 library(scales)
 library(tpltheme)
 library(knitr)
+conflicted::conflict_prefer("filter", "dplyr")
 {% endhighlight %}
 
 ### Read in Data

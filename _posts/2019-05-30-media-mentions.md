@@ -33,12 +33,14 @@ library(lubridate)
 library(RColorBrewer)
 library(devtools)
 library(knitr)
+library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
+
+set_cr_theme(font = "lato")
 
 data <- read.csv("https://raw.githubusercontent.com/connorrothschild/media-mentions/master/data.csv", header = T)
   #read.csv(("https://raw.githubusercontent.com/fivethirtyeight/data/master/media-mentions-2020/cable_weekly.csv"), header=T)
 {% endhighlight %}
-
-
 
 The dataset contains information on 22 presidential candidates, recording weekly the number of clips which mention a presidential candidate (*matched_clips*) and dividing them by the total number of clips that week (*total_clips*) to reveal the percent (*pct_of_all_candidate_clips*) of clips which mention that candidate.
 
@@ -73,7 +75,17 @@ data %>%
   theme_cr()
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-3-1.png)
+
+
+{% highlight text %}
+## [conflicted] `geom_col` found in 2 packages.
+## Either pick the one you want with `::` 
+## * cr::geom_col
+## * ggplot2::geom_col
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("geom_col", "cr")
+## * conflict_prefer("geom_col", "ggplot2")
+{% endhighlight %}
 
 Somewhat unsurprisingly. Joe Biden and Bernie Sanders lead the pack in media attention. Joe Biden tends to receive significantly more media attention than the average candidate (a weekly average of 0.9% of overall media content compared to 0.14% for the average candidate).
 
@@ -105,7 +117,17 @@ data %>%
   scale_color_discrete(name="Candidate")
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-4-1.png)
+
+
+{% highlight text %}
+## [conflicted] `geom_line` found in 2 packages.
+## Either pick the one you want with `::` 
+## * cr::geom_line
+## * ggplot2::geom_line
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("geom_line", "cr")
+## * conflict_prefer("geom_line", "ggplot2")
+{% endhighlight %}
 
 Evidently, much of Joe Biden's popularity in the media can be explained by a few large spikes in weekly media mentions. We can explore the distribution of weekly media mentions using a visualization known as a [density ridge plot](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html).
 
@@ -128,7 +150,19 @@ ggplot(aes(x = pct_of_all_candidate_clips, y = reorder(name,pct_of_all_candidate
   theme_cr() 
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-5-1.png)
+
+
+{% highlight text %}
+## [conflicted] `scale_fill_discrete` found in 2 packages.
+## Either pick the one you want with `::` 
+## * cr::scale_fill_discrete
+## * ggplot2::scale_fill_discrete
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("scale_fill_discrete", "cr")
+## * conflict_prefer("scale_fill_discrete", "ggplot2")
+{% endhighlight %}
+
+![center](/figs/2019-05-30-media-mentions/unnamed-chunk-4-1.png)
 
 This plot illustrates that most candidates enjoy the same levels of media coverage from one week to another. Joe Biden, however, often has weeks in which he receives much more attention than usual, as evidenced by his small peaks throughout the plot. Bernie Sanders, Kamala Harris, and Beto O'Rourke also experienced a few jumps in attention, likely when they announced their candidacy for the presidency.
 
@@ -153,7 +187,17 @@ data %>%
        subtitle="Subtracting a given week's % mentions from the week prior")
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-6-1.png)
+
+
+{% highlight text %}
+## [conflicted] `geom_col` found in 2 packages.
+## Either pick the one you want with `::` 
+## * cr::geom_col
+## * ggplot2::geom_col
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("geom_col", "cr")
+## * conflict_prefer("geom_col", "ggplot2")
+{% endhighlight %}
 
 Unsurprisingly, the bars tend to mirror one another. If a candidate enjoys a steep increase in media attention one week, they are likely to see a correlated drop in the following week (if that week were really a spike in attention). The plot suggests that Joe Biden's announcement (on April 25th) led to the most dramatic change in media attention in the 2020 cycle so far. Bernie Sanders also witnessed a spike in attention in the week following his announcement on February 19th. The same is true for the other candidates included in this plot.
 
@@ -213,7 +257,17 @@ recentdata %>%
        subtitle = "Candidates ranked by weekly media mentions")
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-7-1.png)
+
+
+{% highlight text %}
+## [conflicted] `geom_line` found in 2 packages.
+## Either pick the one you want with `::` 
+## * cr::geom_line
+## * ggplot2::geom_line
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("geom_line", "cr")
+## * conflict_prefer("geom_line", "ggplot2")
+{% endhighlight %}
 
 Some takeaways:
 

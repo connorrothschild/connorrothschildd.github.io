@@ -34,23 +34,13 @@ library(lubridate)
 library(RColorBrewer)
 library(devtools)
 library(knitr)
+library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
+
+set_cr_theme(font = "lato")
 
 data <- read.csv("https://raw.githubusercontent.com/connorrothschild/media-mentions/master/data.csv", header = T)
   #read.csv(("https://raw.githubusercontent.com/fivethirtyeight/data/master/media-mentions-2020/cable_weekly.csv"), header=T)
-```
-
-```{r, include=FALSE}
-theme_cr <- function () {
-  theme_bw(base_size=12, base_family="sans") %+replace% 
-    theme(axis.ticks = element_line(colour = "black"), 
-          legend.key = element_rect(colour = "grey80"), 
-          panel.background = element_blank(), 
-          panel.border = element_blank(), 
-          panel.grid.major = element_line(colour = "grey90", size = 0.2), 
-          panel.grid.minor = element_line(colour = "grey98", size = 0.5), 
-          strip.background = element_rect(fill = "grey80", colour = "grey50", 
-                                          size = 0.2))
-}
 ```
 
 The dataset contains information on 22 presidential candidates, recording weekly the number of clips which mention a presidential candidate (*matched_clips*) and dividing them by the total number of clips that week (*total_clips*) to reveal the percent (*pct_of_all_candidate_clips*) of clips which mention that candidate.

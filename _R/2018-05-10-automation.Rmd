@@ -21,8 +21,11 @@ library(tools)
 library(readxl)
 library(tidyverse)
 library(knitr)
+library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
+
 options(scipen=999)
-theme_set(theme_minimal())
+set_cr_theme(font = "lato")
 ```
 
 ### Load datasets: 

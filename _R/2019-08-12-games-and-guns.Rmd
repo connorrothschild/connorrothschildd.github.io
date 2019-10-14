@@ -22,8 +22,10 @@ library(ggplot2)
 library(tpltheme)
 library(showtext)
 library(emojifont)
+library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
 
-set_tpl_theme(font = "lato")
+set_cr_theme(font = "lato")
 ```
 
 ### Load Data

@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(ggplot2)
 library(tidyverse)
 library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
 
 set_cr_theme(font = "lato")
 ```
