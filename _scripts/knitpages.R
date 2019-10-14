@@ -21,7 +21,7 @@ KnitPost <- function(input, outfile, figsfolder, cachefolder, base.url="/") {
   knit(input, outfile, envir = parent.frame())
 }
 
-knit_folder <- function(infolder, outfolder, figsfolder, cachefolder) {
+knit_folder <- function(infolder, outfolder, figsfolder, cachefolder, knit_all = FALSE) {
   for (infile in list.files(infolder, pattern = "*.Rmd", full.names = TRUE)) {
     pattern = "\\d\\d\\d\\d\\-\\d\\d\\-\\d\\d\\-"
     print(infile)
@@ -30,11 +30,14 @@ knit_folder <- function(infolder, outfolder, figsfolder, cachefolder) {
     print(outfile)
     
     # knit only if the input file is the last one modified
+    if (knit_all == TRUE) {
+      KnitPost(infile, outfile, figsfolder, cachefolder)
+    } 
     if (!file.exists(outfile) |
-        file.info(infile)$mtime > file.info(outfile)$mtime) 
+        file.info(infile)$mtime > file.info(outfile)$mtime)
       KnitPost(infile, outfile, figsfolder, cachefolder)
     }
   }
 
-knit_folder("_R", "_posts", "figs/", "_caches/")
+knit_folder("_R", "_posts", "figs/", "_caches/", knit_all = TRUE)
 #knit_folder("_R/drafts", "_drafts", "figs/drafts/")

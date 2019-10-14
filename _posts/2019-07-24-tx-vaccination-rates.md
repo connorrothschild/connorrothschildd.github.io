@@ -26,6 +26,8 @@ library(scales)
 library(tpltheme)
 library(knitr)
 conflicted::conflict_prefer("filter", "dplyr")
+
+set_tpl_theme(font = "lato")
 {% endhighlight %}
 
 ### Read in Data

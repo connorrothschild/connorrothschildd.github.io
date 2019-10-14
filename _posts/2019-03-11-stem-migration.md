@@ -16,6 +16,10 @@ library(readxl)
 library(tidyverse)
 library(tidyr)
 library(knitr)
+library(cr)
+conflicted::conflict_prefer("filter", "dplyr")
+
+set_cr_theme(font = "lato")
 {% endhighlight %}
 
 ### The Data
@@ -156,7 +160,7 @@ data %>% distinct(year,type,.keep_all=TRUE) %>%
   filter(type=="blackgrowth") %>% 
   ggplot(mapping=aes(x=year,y=growth)) +
   geom_col(aes(fill=growth)) + 
-  scale_fill_gradient(low = "darkred", high = "#F8766D") +
+  scale_fill_gradient() +
   ylab("Percent Attrition") +
   xlab("Class") +
   ggtitle("Percent Change in Black STEM Undergrads", subtitle = "Between time of matriculation and time of graduation") +
@@ -172,12 +176,11 @@ data %>% distinct(year,type,.keep_all=TRUE) %>%
   filter(type=="femalegrowth") %>% 
   ggplot(mapping=aes(x=year,y=growth)) +
   geom_col(aes(fill=growth)) +
-  scale_fill_gradient(low = "#00BA38", high = "darkgreen") +
+  scale_fill_gradient() +
   ylab("Percent Growth") +
   xlab("Class") +
   ggtitle("Percent Change in Female STEM Undergrads", subtitle = "Between time of matriculation and time of graduation") +
-  labs(fill="Growth") +
-  theme_minimal()
+  labs(fill="Growth")
 {% endhighlight %}
 
 ![center](/figs/2019-03-11-stem-migration/plot5-1.png)
@@ -188,12 +191,11 @@ data %>% distinct(year,type,.keep_all=TRUE) %>%
   filter(type=="hispanicgrowth") %>% 
   ggplot(mapping=aes(x=year,y=growth)) +
   geom_col(aes(fill=growth)) +
-  scale_fill_gradient(low = "#619CFF", high = "darkblue") +
+  scale_fill_gradient() +
   ylab("Percent Growth") +
   xlab("Class") +
   ggtitle("Percent Change in Hispanic STEM Undergrads", subtitle = "Between time of matriculation and time of graduation") +
-  labs(fill="Growth") +
-  theme_minimal()
+  labs(fill="Growth")
 {% endhighlight %}
 
 ![center](/figs/2019-03-11-stem-migration/plot-1.png)
@@ -210,7 +212,6 @@ data %>% distinct(year,type,.keep_all=TRUE) %>%
   xlab("Class") +
   ggtitle("Percent Change in Proportion of STEM Undergrads", subtitle = "Between time of matriculation and time of graduation") +
   labs(fill="Percent\nChange") +
-  theme_minimal() +
   facet_grid(. ~ type, labeller=labeller(type = labels)) +
   scale_x_discrete(labels = c("Class of 2006" = "2006", "Class of 2007" = "2007", "Class of 2008" = "2008", "Class of 2009" = "2009", "Class of 2010" = "2010", "Class of 2011" = "2011", "Class of 2012" = "2012", "Class of 2013" = "2013"))
 {% endhighlight %}

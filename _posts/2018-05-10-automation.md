@@ -103,10 +103,9 @@ Next, I want to cross-reference the salary data with the education data.
 
 
 {% highlight r %}
-library(plyr)
 education1 <- education %>% select(-...2)
   
-education1 <- rename(education1, c("2016 National Employment Matrix title and code" = "occupation",
+education1 <- plyr::rename(education1, c("2016 National Employment Matrix title and code" = "occupation",
                      "Less than high school diploma" = "lessthanhs", 
                      "High school diploma or equivalent" = "hsdiploma",
                      "Some college, no degree" = "somecollege",
@@ -114,114 +113,38 @@ education1 <- rename(education1, c("2016 National Employment Matrix title and co
                      "Bachelor's degree" = "bachelors",
                      "Master's degree" = "masters",
                      "Doctoral or professional degree" = "professional"))
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `rename` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::rename
-## * dplyr::rename
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("rename", "plyr")
-## * conflict_prefer("rename", "dplyr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
 education2 <- education1 %>% 
   group_by(occupation) %>%
   mutate(hsorless = lessthanhs + hsdiploma,
          somecollegeorassociates = somecollege + associates,
          postgrad = masters + professional)
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error: Column `occupation` is unknown
-{% endhighlight %}
-
-
-
-{% highlight r %}
 education2 <- education2 %>% drop_na()
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(lhs, parent, parent): object 'education2' not found
 {% endhighlight %}
 
 Next, I want to join education2 and salary2 to start analysis of education's effect on salary.
 
 
 {% highlight r %}
-salary2 <- rename(salary2, c("OCC_TITLE" = "occupation"))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [conflicted] `rename` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::rename
-## * dplyr::rename
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("rename", "plyr")
-## * conflict_prefer("rename", "dplyr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
+salary2 <- plyr::rename(salary2, c("OCC_TITLE" = "occupation"))
 salary2$occupation <- tolower(salary2$occupation)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in `$<-.data.frame`(`*tmp*`, occupation, value = character(0)): replacement has 0 rows, data has 1105
-{% endhighlight %}
-
-
-
-{% highlight r %}
 education2$occupation <- tolower(education2$occupation)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in tolower(education2$occupation): object 'education2' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 edsal <- merge(as.data.frame(education2), as.data.frame(salary2), by="occupation") %>% drop_na()
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in as.data.frame(education2): object 'education2' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 head(edsal) %>% kable()
 {% endhighlight %}
 
 
 
-{% highlight text %}
-## Error in head(edsal): object 'edsal' not found
-{% endhighlight %}
+|   |occupation                                                                | lessthanhs| hsdiploma| somecollege| associates| bachelors| masters| professional| hsorless| somecollegeorassociates| postgrad| TOT_EMP| A_MEDIAN|    natlwage|
+|:--|:-------------------------------------------------------------------------|----------:|---------:|-----------:|----------:|---------:|-------:|------------:|--------:|-----------------------:|--------:|-------:|--------:|-----------:|
+|1  |accountants and auditors                                                  |        0.0|       4.0|         7.6|        9.2|      55.6|    20.8|          2.8|      4.0|                    16.8|     23.6| 1241000|    69350| 96698720000|
+|3  |actuaries                                                                 |        0.0|       0.0|         1.2|        1.5|      62.1|    24.9|         10.3|      0.0|                     2.7|     35.2|   19210|   101560|  2206268500|
+|4  |adhesive bonding machine operators and tenders                            |       21.6|      49.2|        21.5|        2.2|       4.9|     0.5|          0.0|     70.8|                    23.7|      0.5|   15860|    32710|   549231800|
+|5  |administrative law judges, adjudicators, and hearing officers             |        0.2|       0.4|         0.6|        0.5|       5.0|     4.4|         88.9|      0.6|                     1.1|     93.3|   14480|    94790|  1423094400|
+|6  |administrative services managers                                          |        2.1|      17.9|        26.1|       12.1|      29.7|    10.3|          1.7|     20.0|                    38.2|     12.0|  270100|    94020| 27922938000|
+|7  |adult basic and secondary education and literacy teachers and instructors |        1.8|      10.2|        18.4|        8.5|      35.9|    20.5|          4.7|     12.0|                    26.9|     25.2|   60670|    52100|  3446056000|
 
 At this point I'm realizing that having the educational breakdown (# of Bachelor's degrees, PhD's, etc.) per job is interesting but may not be able to reveal a lot of key insights.
 
@@ -234,57 +157,31 @@ typicaleducation2 <- typicaleducation %>% select(occupation,typicaled,workexp)
 typicaleducation2 <- typicaleducation2 %>% drop_na()
 typicaleducation2$occupation <- tolower(typicaleducation2$occupation)
 edsal2 <- merge(as.data.frame(edsal), as.data.frame(typicaleducation2), by="occupation")
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in as.data.frame(edsal): object 'edsal' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 head(edsal2) %>% kable()
 {% endhighlight %}
 
 
 
-{% highlight text %}
-## Error in head(edsal2): object 'edsal2' not found
-{% endhighlight %}
+|occupation                                                                | lessthanhs| hsdiploma| somecollege| associates| bachelors| masters| professional| hsorless| somecollegeorassociates| postgrad| TOT_EMP| A_MEDIAN|    natlwage|typicaled                         |workexp           |
+|:-------------------------------------------------------------------------|----------:|---------:|-----------:|----------:|---------:|-------:|------------:|--------:|-----------------------:|--------:|-------:|--------:|-----------:|:---------------------------------|:-----------------|
+|accountants and auditors                                                  |        0.0|       4.0|         7.6|        9.2|      55.6|    20.8|          2.8|      4.0|                    16.8|     23.6| 1241000|    69350| 96698720000|Bachelor's degree                 |None              |
+|actuaries                                                                 |        0.0|       0.0|         1.2|        1.5|      62.1|    24.9|         10.3|      0.0|                     2.7|     35.2|   19210|   101560|  2206268500|Bachelor's degree                 |None              |
+|adhesive bonding machine operators and tenders                            |       21.6|      49.2|        21.5|        2.2|       4.9|     0.5|          0.0|     70.8|                    23.7|      0.5|   15860|    32710|   549231800|High school diploma or equivalent |None              |
+|administrative law judges, adjudicators, and hearing officers             |        0.2|       0.4|         0.6|        0.5|       5.0|     4.4|         88.9|      0.6|                     1.1|     93.3|   14480|    94790|  1423094400|Doctoral or professional degree   |5 years or more   |
+|administrative services managers                                          |        2.1|      17.9|        26.1|       12.1|      29.7|    10.3|          1.7|     20.0|                    38.2|     12.0|  270100|    94020| 27922938000|Bachelor's degree                 |Less than 5 years |
+|adult basic and secondary education and literacy teachers and instructors |        1.8|      10.2|        18.4|        8.5|      35.9|    20.5|          4.7|     12.0|                    26.9|     25.2|   60670|    52100|  3446056000|Bachelor's degree                 |None              |
 
 This data allows us to ask: **What is the median wage for each typical level of education?**
 
 
 {% highlight r %}
-detach(package:plyr)
 edsal3 <- edsal2 %>% 
   group_by(typicaled) %>% 
   summarise(medianwage = mean(A_MEDIAN))
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in eval(lhs, parent, parent): object 'edsal2' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 legend_ord <- levels(with(edsal3, reorder(typicaled, medianwage)))
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in with(edsal3, reorder(typicaled, medianwage)): object 'edsal3' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ggplot(data=edsal3, aes(x = reorder(typicaled, medianwage), y = medianwage)) +
   geom_col(aes(fill=typicaled)) +
   ggtitle("Median Annual Income by Education Level") +
@@ -296,11 +193,7 @@ ggplot(data=edsal3, aes(x = reorder(typicaled, medianwage), y = medianwage)) +
   theme(axis.text.x=element_blank())
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in ggplot(data = edsal3, aes(x = reorder(typicaled, medianwage), : object 'edsal3' not found
-{% endhighlight %}
+![center](/figs/2018-05-10-automation/wagebyedu-1.png)
 
 The results are unsurpising: more educated people on average earn more.
 
@@ -352,12 +245,6 @@ automation1$occupation <- tolower(automation$occupation)
 data <- merge(as.data.frame(edsal2), as.data.frame(automation1), by="occupation")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in as.data.frame(edsal2): object 'edsal2' not found
-{% endhighlight %}
-
 We can create an initial visualization of the relationship between automation risk and education level.
 
 
@@ -366,29 +253,9 @@ autovsedu <- data %>%
   group_by(typicaled) %>% 
   summarise(medianwage = mean(A_MEDIAN),
             averageprobability = mean(probability))
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in UseMethod("group_by_"): no applicable method for 'group_by_' applied to an object of class "function"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 legend_ord2 <- levels(with(autovsedu, reorder(typicaled, -averageprobability)))
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in with(autovsedu, reorder(typicaled, -averageprobability)): object 'autovsedu' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ggplot(data=autovsedu, aes(x = reorder(typicaled, -averageprobability), y = averageprobability)) +
   geom_col(aes(fill=typicaled)) +
   ggtitle("Likelihood of Job Automation by Education Level") +
@@ -400,11 +267,7 @@ ggplot(data=autovsedu, aes(x = reorder(typicaled, -averageprobability), y = aver
   theme(axis.text.x=element_blank())
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in ggplot(data = autovsedu, aes(x = reorder(typicaled, -averageprobability), : object 'autovsedu' not found
-{% endhighlight %}
+![center](/figs/2018-05-10-automation/firstlook-1.png)
 
 There is a rather clear correlation between level of education and automation risk: those who are more educated are better protected from automation.
 
@@ -427,29 +290,14 @@ ggplot(data=data) +
   theme_minimal()
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error: You're passing a function as global data.
-## Have you misspelled the `data` argument in `ggplot()`
-{% endhighlight %}
+![center](/figs/2018-05-10-automation/viz2-1.png)
 
 With labels, a final look:
 
 
 {% highlight r %}
 data$occupation <- toTitleCase(data$occupation)
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in data$occupation: object of type 'closure' is not subsettable
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ggplot(data=data) +
   geom_point(mapping=aes(x=A_MEDIAN, y=probability, size=TOT_EMP, alpha=0.05, col=typicaled))+
   geom_smooth(aes(x=A_MEDIAN, y=probability), method="lm", se=FALSE) +
@@ -475,12 +323,7 @@ ggplot(data=data) +
   annotate("text", x = 45000, y = 1.03, label = "Lowest salary,\n highest automation risk", size=3, fontface=2)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error: You're passing a function as global data.
-## Have you misspelled the `data` argument in `ggplot()`
-{% endhighlight %}
+![center](/figs/2018-05-10-automation/finalviz-1.png)
 
 ### Conclusions
 

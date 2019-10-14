@@ -87,10 +87,9 @@ We now have three data points:
 Next, I want to cross-reference the salary data with the education data. 
 
 ```{r educationcleaning}
-library(plyr)
 education1 <- education %>% select(-...2)
   
-education1 <- rename(education1, c("2016 National Employment Matrix title and code" = "occupation",
+education1 <- plyr::rename(education1, c("2016 National Employment Matrix title and code" = "occupation",
                      "Less than high school diploma" = "lessthanhs", 
                      "High school diploma or equivalent" = "hsdiploma",
                      "Some college, no degree" = "somecollege",
@@ -111,7 +110,7 @@ education2 <- education2 %>% drop_na()
 Next, I want to join education2 and salary2 to start analysis of education's effect on salary.
 
 ```{r educationvssalary}
-salary2 <- rename(salary2, c("OCC_TITLE" = "occupation"))
+salary2 <- plyr::rename(salary2, c("OCC_TITLE" = "occupation"))
 salary2$occupation <- tolower(salary2$occupation)
 education2$occupation <- tolower(education2$occupation)
 edsal <- merge(as.data.frame(education2), as.data.frame(salary2), by="occupation") %>% drop_na()
@@ -136,8 +135,6 @@ head(edsal2) %>% kable()
 This data allows us to ask: **What is the median wage for each typical level of education?**
 
 ```{r wagebyedu}
-
-detach(package:plyr)
 edsal3 <- edsal2 %>% 
   group_by(typicaled) %>% 
   summarise(medianwage = mean(A_MEDIAN))
