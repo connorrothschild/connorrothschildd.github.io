@@ -144,7 +144,7 @@ maleanimation <- malebabynames %>%
 animate(maleanimation, fps = 25, duration = 25, width = 800, height = 600)
 {% endhighlight %}
 
-![center](/figs/2019-06-12-bible-babies/unnamed-chunk-5-1.gif)
+![center](/figs/2019-06-12-bible-babies/unnamed-chunk-6-1.gif)
 
 
 Replicating that code with minor tweaks creates the same animation for girls' names:
@@ -187,7 +187,7 @@ animate(femaleanimation, fps = 25, duration = 25, width = 800, height = 600)
 {% endhighlight %}
 
 
-![center](/figs/2019-06-12-bible-babies/unnamed-chunk-6-1.gif)
+![center](/figs/2019-06-12-bible-babies/unnamed-chunk-7-1.gif)
 
 
 Finally, we can combine some of the insights from our earlier plot (depicting the popularity of Biblical names by sex) to show which boys' names are responsible for their sex's relative dominance over girls' Biblically-inspired names.
@@ -228,5 +228,5 @@ animate(babyanimation, fps = 25, duration = 25, width = 800, height = 600)
 {% endhighlight %}
 
 
-![center](/figs/2019-06-12-bible-babies/unnamed-chunk-7-1.gif)
+![center](/figs/2019-06-12-bible-babies/unnamed-chunk-8-1.gif)
 
