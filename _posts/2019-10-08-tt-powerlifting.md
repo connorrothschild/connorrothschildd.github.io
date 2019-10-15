@@ -173,7 +173,7 @@ a_gif <- animate(animation,
 a_gif
 {% endhighlight %}
 
-![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-12-1.gif)
+![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-9-1.gif)
 
 I'd like to include another GIF: a line chart of differences over time
 
@@ -211,7 +211,7 @@ b_gif <- animate(animation2,
 b_gif
 {% endhighlight %}
 
-![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-13-1.gif)
+![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-10-1.gif)
 
 Next, combine them using `magick` (thanks to [this
 post](https://github.com/thomasp85/gganimate/wiki/Animation-Composition)):
@@ -231,5 +231,5 @@ for(i in 2:250){
 new_gif
 {% endhighlight %}
 
-![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-14-1.gif)
+![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-11-1.gif)
 
