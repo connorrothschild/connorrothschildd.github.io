@@ -41,6 +41,9 @@ set_cr_theme(font = "lato")
 
 data <- read.csv("https://raw.githubusercontent.com/connorrothschild/media-mentions/master/data.csv", header = T)
   #read.csv(("https://raw.githubusercontent.com/fivethirtyeight/data/master/media-mentions-2020/cable_weekly.csv"), header=T)
+
+data <- data %>% 
+  mutate(date = as.Date(date, "%m/%d/%y"))
 ```
 
 The dataset contains information on 22 presidential candidates, recording weekly the number of clips which mention a presidential candidate (*matched_clips*) and dividing them by the total number of clips that week (*total_clips*) to reveal the percent (*pct_of_all_candidate_clips*) of clips which mention that candidate.
@@ -58,15 +61,15 @@ We can begin with a simple analysis of which candidates are discussed most frequ
 ```{r}
 data %>% 
   group_by(name) %>% 
-  summarise(pct_of_all_candidate_clips = mean(pct_of_all_candidate_clips)) %>% 
+  summarise(pct_of_all_candidate_clips = mean(pct_of_all_candidate_clips)*100) %>% 
   top_n(12, wt = pct_of_all_candidate_clips) %>% 
   ggplot(aes(x=reorder(name,pct_of_all_candidate_clips),y=pct_of_all_candidate_clips, fill=name)) +
   geom_col(show.legend=FALSE) +
   coord_flip() +
+  fix_bars() +
   labs(x=element_blank(),
        y="Percent of Media Mentions",
-       title="Average Proportion of Media Coverage on a Weekly Basis") +
-  theme_cr()
+       title="Average Proportion of Media Coverage on a Weekly Basis")
 ```
 
 Somewhat unsurprisingly. Joe Biden and Bernie Sanders lead the pack in media attention. Joe Biden tends to receive significantly more media attention than the average candidate (a weekly average of 0.9% of overall media content compared to 0.14% for the average candidate).
@@ -76,26 +79,34 @@ How has that coverage changed over time?
 ```{r}
 data %>% 
   group_by(name) %>% 
-  filter(mean(pct_of_all_candidate_clips) > .05) %>% # filter out unpopular candidates for plot clarity
-  ggplot(aes(x=date,y=pct_of_all_candidate_clips,group=name, color=name)) +
+  filter(mean(pct_of_all_candidate_clips) > .06) %>% # filter out unpopular candidates for plot clarity
+  ggplot(aes(x=as.Date(date),y=pct_of_all_candidate_clips*100,group=name, color=name)) +
   geom_point() +
-  geom_line() +
+  geom_smooth(se = FALSE, show.legend = FALSE) +
+  # geom_text(data = subset(data, as.numeric(date) == 21 & mean(pct_of_all_candidate_clips) > .05), 
+  #           aes(x = 21, label = name, color = "#000000"), hjust = -.05, 
+  #           show.legend = FALSE) + 
   geom_label_repel(data=subset(data, pct_of_all_candidate_clips>.6),
           label = "Lucy Flores accuses Biden of \n inappropriate touching",
-                   nudge_x = -50, nudge_y=-.05,
+                   nudge_x = -25, nudge_y=-5,
                    show.legend = FALSE,
                    color="black") + 
   geom_label_repel(data=subset(data, pct_of_all_candidate_clips > .58 & pct_of_all_candidate_clips <.6),
           label = "Joe Biden announces candidacy",
-           nudge_x = -3, nudge_y=-.08,
+           nudge_x = -5, nudge_y=-7,
            show.legend = FALSE,
            color="black") +
-  theme_cr() +
-  theme(axis.text.x = element_text(angle = 65)) +
+  # theme(axis.text.x = element_text(angle = 65, hjust = 1)) +
+  # coord_cartesian(clip = 'off') +
+  # # scale_x_discrete(breaks = c("1/20/19", "2/10/19","3/10/19","3/31/19","4/28/19"),
+  # #                  labels = c("January", "February", "March", "April", "May")) +
+  # # theme(plot.margin = margin(5.5, 100, 5.5, 5.5)) +
   labs(x=element_blank(),
        y="Percent of Media Mentions",
-       title="Media Mentions of Candidates Over Time") +
-  scale_color_discrete(name="Candidate")
+       title="Media Mentions of Candidates Over Time") + 
+  scale_color_discrete(name="Candidate", 
+                       limits = c("Joe Biden", "Bernie Sanders", "Elizabeth Warren", 
+                                  "Kamala Harris", "Beto O'Rourke", "Cory Booker"))
 ```
 
 Evidently, much of Joe Biden's popularity in the media can be explained by a few large spikes in weekly media mentions. We can explore the distribution of weekly media mentions using a visualization known as a [density ridge plot](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html).
@@ -105,7 +116,7 @@ data %>%
   group_by(name) %>% 
   filter(mean(pct_of_all_candidate_clips) > 0.1) %>% 
   ungroup() %>% 
-ggplot(aes(x = pct_of_all_candidate_clips, y = reorder(name,pct_of_all_candidate_clips), fill=name, color=name)) +
+ggplot(aes(x = pct_of_all_candidate_clips*100, y = reorder(name,pct_of_all_candidate_clips))) +
   geom_density_ridges(aes(point_colour=name), 
                       show.legend = FALSE, 
                       alpha = .2, 
@@ -114,8 +125,7 @@ ggplot(aes(x = pct_of_all_candidate_clips, y = reorder(name,pct_of_all_candidate
   labs(x = "Percent of Media Mentions",
        y=element_blank(),
        title="Media Mentions of Each Candidate",
-       subtitle="With density ridges depicting average mentions on a weekly basis") +
-  theme_cr() 
+       subtitle="With density ridges depicting average mentions on a weekly basis") 
 ```
 
 This plot illustrates that most candidates enjoy the same levels of media coverage from one week to another. Joe Biden, however, often has weeks in which he receives much more attention than usual, as evidenced by his small peaks throughout the plot. Bernie Sanders, Kamala Harris, and Beto O'Rourke also experienced a few jumps in attention, likely when they announced their candidacy for the presidency.
@@ -129,11 +139,10 @@ data %>%
   group_by(name) %>% 
   mutate(change = (pct_of_all_candidate_clips-(dplyr::lag(pct_of_all_candidate_clips, n=1, default=NA)))) %>% 
   filter(change >.2 | change < -.2) %>% 
-  ggplot(aes(x=reorder(as.factor(date),change),y=change, fill=name)) +
+  ggplot(aes(x=reorder(as.factor(date),change),y=change*100, fill=name)) +
   geom_col() +
   scale_fill_discrete(name="Candidate") +
-  theme_cr() +
-  theme(axis.text.x = element_text(angle = 30)) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   labs(x=element_blank(),
        y="Percent Change",
        title="Largest Differences in Weekly Media Mentions",
@@ -189,8 +198,12 @@ recentdata %>%
             aes(x = date, hjust = 1.2)) +
   geom_text(data = subset(finranking), size=3, 
             aes(x = date, hjust = -.2)) +
-  theme_cr() +
-  theme(legend.position = "none") +
+  theme(line = element_blank(), rect = element_blank(), axis.text = element_blank(), 
+        axis.title = element_blank(),
+        axis.ticks.length = unit(0, "pt"), axis.ticks.length.x = NULL, 
+        axis.ticks.length.x.top = NULL, axis.ticks.length.x.bottom = NULL, 
+        axis.ticks.length.y = NULL, axis.ticks.length.y.left = NULL, 
+        axis.ticks.length.y.right = NULL, legend.box = NULL, legend.position = "none") +
   labs(x = element_blank(),
        y = "Rank",
        title = "The Race for Media Attention",
