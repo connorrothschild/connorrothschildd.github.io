@@ -12,7 +12,7 @@ I've spent the majority of the summer as an [intern](https://www.texaspolicylab.
 
 The project was my first experience in developing my own R package. Prior to this project, the most familiarity I had with packages were from the `install.packages()` and `library()` commands.
 
-Hadley Wickham's book *[R Packages](http://r-pkgs.had.co.nz/)* was enormously helpful in introducing package development to me. I ran into (a lot of) issues in building the package, specifically encountering problems related to local file paths and logo placement on plots. 
+Hadley Wickham's book **[R Packages](http://r-pkgs.had.co.nz/)** was enormously helpful in introducing package development to me. I ran into (a lot of) issues in building the package, specifically encountering problems related to local file paths and logo placement on plots. 
 
 Creating your own package is a great exercise in trial and error, and taught me a lot about programming in R that I wouldn't have learned otherwise. I was also struck by how remarkably easy it was to create one's own package (seriously, it requires the same amount of clicks as starting a new R project), and how thorough online resources were.
 
