@@ -100,7 +100,7 @@ edsal <- merge(as.data.frame(education2), as.data.frame(salary2), by="occupation
 
 ## Bring in Shiny
 
-```{r, echo=FALSE}
+```{r}
 library(shiny)
 
 # Define UI for application 
