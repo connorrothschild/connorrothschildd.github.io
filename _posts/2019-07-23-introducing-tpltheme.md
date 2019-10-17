@@ -41,6 +41,9 @@ library(tidyverse)
 library(tpltheme)
 {% endhighlight %}
 
+
+
+
 Always load `library(tpltheme)` **after** `library(ggplot2)` and/or `library(tidyverse)`.
 
 The package creates a standardized formats for plots to be used in reports created by the Texas Policy Lab. It primarily relies on `set_tpl_theme()`, which allows the user to specify whether the plot theme should align with a standard plot (`style = "print"`), or one specially created for plotting geographical data (`style = "Texas"`). Calling `set_tpl_theme()` after `library(tpltheme)` does most of the work for this package!
@@ -99,7 +102,9 @@ ggplot(data = tx_vac, mapping = aes(x = long, y = lat, group = group, fill = avg
        caption = "Source: Texas DSHS")
 {% endhighlight %}
 
+
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-13-1.png)
+
 
 And it also works for categorical variables:
 
@@ -120,7 +125,9 @@ tx_vac %>%
        caption = "Source: Texas DSHS")
 {% endhighlight %}
 
+
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-14-1.png)
+
 
 If the number of colors exceeds the number of colors in the TPL palette (9), the function `tpl_color_pal()` will drop the TPL color palette and return the greatest number of unique colors possible within the RColorBrewer's "Paired" palette (for more information on the use of RColorBrewer palettes, see [this chapter](https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html#using-the-rcolorbrewer-palettes)).
 
@@ -133,7 +140,9 @@ tx_vac %>%
   labs(title = "Texas Counties")
 {% endhighlight %}
 
+
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-15-1.png)
+
 
 {% highlight r %}
 # default to print afterwards
@@ -204,7 +213,9 @@ ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Species, siz
     drop_axis(axis = "y")
 {% endhighlight %}
 
+
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-19-1.png)
+
 
 ### Colors
 
@@ -226,7 +237,9 @@ p3 <- view_palette(palette = palette_tpl_sequential) + ggtitle("Sequential")
 gridExtra::grid.arrange(p1, p2, p3, nrow = 1)
 {% endhighlight %}
 
+
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-20-1.png)
+
 
 These palettes were created using http://colorbrewer2.org and http://coloors.co and are colorblind friendly. 
 
@@ -333,7 +346,9 @@ ggplot(data = data, aes(x = year, y = gdpPercap, fill = country)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 {% endhighlight %}
 
+
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-24-1.png)
+
 
 ### Restore Defaults
 
@@ -358,7 +373,9 @@ ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Species, siz
     labs(x="Sepal Width (cm)", y="Sepal Length (cm)", col="Species", size = "Petal Length", title="Iris Dataset")
 {% endhighlight %}
 
+
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-25-1.png)
+
 
 To restore the TPL theme, simply call `set_tpl_theme()`:
 
@@ -367,5 +384,6 @@ To restore the TPL theme, simply call `set_tpl_theme()`:
 set_tpl_theme()
 last_plot()
 {% endhighlight %}
+
 
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-26-1.png)

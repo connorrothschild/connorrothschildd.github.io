@@ -42,6 +42,13 @@ library(tidyverse)
 library(tpltheme)
 ```
 
+```{r, include=FALSE}
+conflicted::conflict_prefer("scale_colour_discrete", "tpltheme")
+conflicted::conflict_prefer("scale_fill_discrete", "tpltheme")
+conflicted::conflict_prefer("view_palette", "tpltheme")
+```
+
+
 Always load `library(tpltheme)` **after** `library(ggplot2)` and/or `library(tidyverse)`.
 
 The package creates a standardized formats for plots to be used in reports created by the Texas Policy Lab. It primarily relies on `set_tpl_theme()`, which allows the user to specify whether the plot theme should align with a standard plot (`style = "print"`), or one specially created for plotting geographical data (`style = "Texas"`). Calling `set_tpl_theme()` after `library(tpltheme)` does most of the work for this package!
