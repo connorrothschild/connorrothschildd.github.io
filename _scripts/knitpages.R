@@ -18,6 +18,7 @@ KnitPost <- function(input, outfile, figsfolder, cachefolder, base.url="/") {
   opts_chunk$set(fig.width = 12) 
   opts_chunk$set(fig.height = 8)
   render_jekyll()
+  # render_html()
   knit(input, outfile, envir = parent.frame())
 }
 
