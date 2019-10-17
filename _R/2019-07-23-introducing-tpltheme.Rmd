@@ -21,7 +21,7 @@ Creating your own package is a great exercise in trial and error, and taught me 
 
 ## Inspiration 
 
-The catalyst for creating this package was coming across the Urban Institute's [`urbnthemes`](https://github.com/UrbanInstitute/urbnthemes) package on GitHub. I also gathered a lot of inspiration (and borrowed some code) from [ggthemes](https://github.com/jrnold/ggthemes) (Jeffrey Arnold), [bbplot](https://github.com/bbc/bbplot) (BBC News), and [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) (Bob Rudis). I was impressed by the fact that these organizations were able to use R to create publication-ready plots despite the fact that base ggplot figures can look rather ugly (if we're being honest). 
+The catalyst for creating this package was coming across the Urban Institute's [urbnthemes](https://github.com/UrbanInstitute/urbnthemes) package on GitHub. I also gathered a lot of inspiration (and borrowed some code) from [ggthemes](https://github.com/jrnold/ggthemes) (Jeffrey Arnold), [bbplot](https://github.com/bbc/bbplot) (BBC News), and [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) (Bob Rudis). I was impressed by the fact that these organizations were able to use R to create publication-ready plots despite the fact that base ggplot figures can look rather ugly (if we're being honest). 
 
 Because the organization I intern with is still in its infancy, I thought it would be a perfect time to create a standardized theme for figures made in the future. So long as future employees adopt the theme, this package has the potential to create figures specific to our publications, lending TPL organizational credibility and creating cross-report consistency.
 
@@ -249,31 +249,6 @@ reversed <- normal +
   scale_fill_discrete(reverse = TRUE)
 
 gridExtra::grid.arrange(normal, reversed, nrow = 1)
-```
-
-```{r, warning = FALSE, message = FALSE, fig.height = 7}
-normal <- diamonds %>% 
-  group_by(clarity) %>% 
-  summarise(price = mean(price)) %>% 
-  mutate(clarity = forcats::fct_reorder(clarity, price)) %>% 
-  ggplot() +
-  geom_col(aes(x = clarity, y = price, fill = clarity), show.legend = FALSE) +
-  labs(title = "TPL Color Palette",
-       subtitle = "in action",
-       x = "Clarity",
-       y = "Price",
-       fill = element_blank()) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  coord_flip() +
-  scale_fill_discrete() +
-  scale_y_continuous(expand = expand_scale(mult = c(0, 0.001))) +
-  drop_axis(axis = "x")
-
-reversed <- normal +
-  labs(subtitle = "(reversed)") +
-  scale_fill_discrete(reverse = TRUE)
-
-gridExtra::grid.arrange(normal, reversed)
 ```
 
 ```{r}

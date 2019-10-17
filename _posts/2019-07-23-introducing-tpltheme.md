@@ -18,7 +18,7 @@ Creating your own package is a great exercise in trial and error, and taught me 
 
 ## Inspiration 
 
-The catalyst for creating this package was coming across the Urban Institute's [`urbnthemes`](https://github.com/UrbanInstitute/urbnthemes) package on GitHub. I also gathered a lot of inspiration (and borrowed some code) from [ggthemes](https://github.com/jrnold/ggthemes) (Jeffrey Arnold), [bbplot](https://github.com/bbc/bbplot) (BBC News), and [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) (Bob Rudis). I was impressed by the fact that these organizations were able to use R to create publication-ready plots despite the fact that base ggplot figures can look rather ugly (if we're being honest). 
+The catalyst for creating this package was coming across the Urban Institute's [urbnthemes](https://github.com/UrbanInstitute/urbnthemes) package on GitHub. I also gathered a lot of inspiration (and borrowed some code) from [ggthemes](https://github.com/jrnold/ggthemes) (Jeffrey Arnold), [bbplot](https://github.com/bbc/bbplot) (BBC News), and [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) (Bob Rudis). I was impressed by the fact that these organizations were able to use R to create publication-ready plots despite the fact that base ggplot figures can look rather ugly (if we're being honest). 
 
 Because the organization I intern with is still in its infancy, I thought it would be a perfect time to create a standardized theme for figures made in the future. So long as future employees adopt the theme, this package has the potential to create figures specific to our publications, lending TPL organizational credibility and creating cross-report consistency.
 
@@ -213,7 +213,6 @@ ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Species, siz
 
 I also put a lot of time into creating a color palette which was both aesthetically pleasing and accessible to color-blind viewers. This was somewhat difficult because there are [quite a few types of colorblindness](https://nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness). Thankfully, my boss is colorblind, making test cases a lot more accessible!
 
-
 The function `view_palette` plots base color palettes included in `tpltheme`. All TPL color palettes are led by the notation
 `palette_tpl_*` and therefore can be easily autocompleted within RStudio.
 
@@ -229,7 +228,6 @@ gridExtra::grid.arrange(p1, p2, p3, nrow = 1)
 ![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-14-1.png)
 
 These palettes were created using http://colorbrewer2.org and http://coloors.co and are colorblind friendly. 
-
 
 The diverging and sequential color palettes are from http://colorbrewer2.org and the categorical palette is composed of a variety of colors from https://coolors.co/ and the TPL website.
 
@@ -289,34 +287,6 @@ gridExtra::grid.arrange(normal, reversed, nrow = 1)
 
 
 {% highlight r %}
-normal <- diamonds %>% 
-  group_by(clarity) %>% 
-  summarise(price = mean(price)) %>% 
-  mutate(clarity = forcats::fct_reorder(clarity, price)) %>% 
-  ggplot() +
-  geom_col(aes(x = clarity, y = price, fill = clarity), show.legend = FALSE) +
-  labs(title = "TPL Color Palette",
-       subtitle = "in action",
-       x = "Clarity",
-       y = "Price",
-       fill = element_blank()) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  coord_flip() +
-  scale_fill_discrete() +
-  scale_y_continuous(expand = expand_scale(mult = c(0, 0.001))) +
-  drop_axis(axis = "x")
-
-reversed <- normal +
-  labs(subtitle = "(reversed)") +
-  scale_fill_discrete(reverse = TRUE)
-
-gridExtra::grid.arrange(normal, reversed)
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-17-1.png)
-
-
-{% highlight r %}
 data <- gapminder::gapminder %>% 
   dplyr::filter(gapminder::gapminder$country %in% c("France", "Germany", "Ireland", "Italy", "Japan", "Norway", "Mexico", "United States")) %>%
   dplyr::mutate(year = as.Date(paste(year, "-01-01", sep = "", format='%Y-%b-%d')))
@@ -333,7 +303,7 @@ ggplot(data = data, aes(x = year, y = gdpPercap, fill = country)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 {% endhighlight %}
 
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-18-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-17-1.png)
 
 ### Restore Defaults
 
@@ -358,7 +328,7 @@ ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Species, siz
     labs(x="Sepal Width (cm)", y="Sepal Length (cm)", col="Species", size = "Petal Length", title="Iris Dataset")
 {% endhighlight %}
 
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-19-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-18-1.png)
 
 To restore the TPL theme, simply call `set_tpl_theme()`:
 
@@ -368,4 +338,4 @@ set_tpl_theme()
 last_plot()
 {% endhighlight %}
 
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-20-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-19-1.png)
