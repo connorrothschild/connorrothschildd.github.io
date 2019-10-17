@@ -188,10 +188,6 @@ ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Species, siz
 
 I also put a lot of time into creating a color palette which was both aesthetically pleasing and accessible to color-blind viewers. This was somewhat difficult because there are [quite a few types of colorblindness](https://nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness). Thankfully, my boss is colorblind, making test cases a lot more accessible!
 
-The final color palettes I created look like this (the latter image depicts what those palettes look like for viewers with [deuteranopia](https://www.color-blindness.com/deuteranopia-red-green-color-blindness/), one of the most common forms of red-green colorblindness):
-
-[COLORBLINDNESS FIG, REG FIG]
-
 The function `view_palette` plots base color palettes included in `tpltheme`. All TPL color palettes are led by the notation
 `palette_tpl_*` and therefore can be easily autocompleted within RStudio.
 
@@ -204,7 +200,6 @@ gridExtra::grid.arrange(p1, p2, p3, nrow = 1)
 ```
 
 These palettes were created using http://colorbrewer2.org and http://coloors.co and are colorblind friendly. 
-
 
 The diverging and sequential color palettes are from http://colorbrewer2.org and the categorical palette is composed of a variety of colors from https://coolors.co/ and the TPL website.
 
