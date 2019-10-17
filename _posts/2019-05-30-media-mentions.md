@@ -40,19 +40,22 @@ set_cr_theme(font = "lato")
 
 data <- read.csv("https://raw.githubusercontent.com/connorrothschild/media-mentions/master/data.csv", header = T)
   #read.csv(("https://raw.githubusercontent.com/fivethirtyeight/data/master/media-mentions-2020/cable_weekly.csv"), header=T)
+
+data <- data %>% 
+  mutate(date = as.Date(date, "%m/%d/%y"))
 {% endhighlight %}
 
 The dataset contains information on 22 presidential candidates, recording weekly the number of clips which mention a presidential candidate (*matched_clips*) and dividing them by the total number of clips that week (*total_clips*) to reveal the percent (*pct_of_all_candidate_clips*) of clips which mention that candidate.
 
 
-|name         |date     | pct_of_all_candidate_clips| matched_clips| total_clips|
-|:------------|:--------|--------------------------:|-------------:|-----------:|
-|John Delaney |12/30/18 |                  0.0039432|             5|       76029|
-|John Delaney |1/6/19   |                  0.0019589|             2|       82964|
-|John Delaney |1/13/19  |                  0.0081566|             5|       82521|
-|John Delaney |1/20/19  |                  0.0020182|             2|       83649|
-|John Delaney |1/27/19  |                  0.0015723|             3|       80994|
-|John Delaney |2/3/19   |                  0.0006901|             1|       79183|
+|name         |date       | pct_of_all_candidate_clips| matched_clips| total_clips|
+|:------------|:----------|--------------------------:|-------------:|-----------:|
+|John Delaney |2018-12-30 |                  0.0039432|             5|       76029|
+|John Delaney |2019-01-06 |                  0.0019589|             2|       82964|
+|John Delaney |2019-01-13 |                  0.0081566|             5|       82521|
+|John Delaney |2019-01-20 |                  0.0020182|             2|       83649|
+|John Delaney |2019-01-27 |                  0.0015723|             3|       80994|
+|John Delaney |2019-02-03 |                  0.0006901|             1|       79183|
 
 Of interest to us is the *name* of each candidate and the percent (*pct_of_all_candidate_clips*) of media mentions they receive on a weekly basis.
 
@@ -64,15 +67,15 @@ We can begin with a simple analysis of which candidates are discussed most frequ
 {% highlight r %}
 data %>% 
   group_by(name) %>% 
-  summarise(pct_of_all_candidate_clips = mean(pct_of_all_candidate_clips)) %>% 
+  summarise(pct_of_all_candidate_clips = mean(pct_of_all_candidate_clips)*100) %>% 
   top_n(12, wt = pct_of_all_candidate_clips) %>% 
   ggplot(aes(x=reorder(name,pct_of_all_candidate_clips),y=pct_of_all_candidate_clips, fill=name)) +
   geom_col(show.legend=FALSE) +
   coord_flip() +
+  fix_bars() +
   labs(x=element_blank(),
        y="Percent of Media Mentions",
-       title="Average Proportion of Media Coverage on a Weekly Basis") +
-  theme_cr()
+       title="Average Proportion of Media Coverage on a Weekly Basis")
 {% endhighlight %}
 
 ![center](/figs/2019-05-30-media-mentions/unnamed-chunk-2-1.png)
@@ -85,26 +88,34 @@ How has that coverage changed over time?
 {% highlight r %}
 data %>% 
   group_by(name) %>% 
-  filter(mean(pct_of_all_candidate_clips) > .05) %>% # filter out unpopular candidates for plot clarity
-  ggplot(aes(x=date,y=pct_of_all_candidate_clips,group=name, color=name)) +
+  filter(mean(pct_of_all_candidate_clips) > .06) %>% # filter out unpopular candidates for plot clarity
+  ggplot(aes(x=as.Date(date),y=pct_of_all_candidate_clips*100,group=name, color=name)) +
   geom_point() +
-  geom_line() +
+  geom_smooth(se = FALSE, show.legend = FALSE) +
+  # geom_text(data = subset(data, as.numeric(date) == 21 & mean(pct_of_all_candidate_clips) > .05), 
+  #           aes(x = 21, label = name, color = "#000000"), hjust = -.05, 
+  #           show.legend = FALSE) + 
   geom_label_repel(data=subset(data, pct_of_all_candidate_clips>.6),
           label = "Lucy Flores accuses Biden of \n inappropriate touching",
-                   nudge_x = -50, nudge_y=-.05,
+                   nudge_x = -25, nudge_y=-5,
                    show.legend = FALSE,
                    color="black") + 
   geom_label_repel(data=subset(data, pct_of_all_candidate_clips > .58 & pct_of_all_candidate_clips <.6),
           label = "Joe Biden announces candidacy",
-           nudge_x = -3, nudge_y=-.08,
+           nudge_x = -5, nudge_y=-7,
            show.legend = FALSE,
            color="black") +
-  theme_cr() +
-  theme(axis.text.x = element_text(angle = 65)) +
+  # theme(axis.text.x = element_text(angle = 65, hjust = 1)) +
+  # coord_cartesian(clip = 'off') +
+  # # scale_x_discrete(breaks = c("1/20/19", "2/10/19","3/10/19","3/31/19","4/28/19"),
+  # #                  labels = c("January", "February", "March", "April", "May")) +
+  # # theme(plot.margin = margin(5.5, 100, 5.5, 5.5)) +
   labs(x=element_blank(),
        y="Percent of Media Mentions",
-       title="Media Mentions of Candidates Over Time") +
-  scale_color_discrete(name="Candidate")
+       title="Media Mentions of Candidates Over Time") + 
+  scale_color_discrete(name="Candidate", 
+                       limits = c("Joe Biden", "Bernie Sanders", "Elizabeth Warren", 
+                                  "Kamala Harris", "Beto O'Rourke", "Cory Booker"))
 {% endhighlight %}
 
 ![center](/figs/2019-05-30-media-mentions/unnamed-chunk-3-1.png)
@@ -117,7 +128,7 @@ data %>%
   group_by(name) %>% 
   filter(mean(pct_of_all_candidate_clips) > 0.1) %>% 
   ungroup() %>% 
-ggplot(aes(x = pct_of_all_candidate_clips, y = reorder(name,pct_of_all_candidate_clips), fill=name, color=name)) +
+ggplot(aes(x = pct_of_all_candidate_clips*100, y = reorder(name,pct_of_all_candidate_clips))) +
   geom_density_ridges(aes(point_colour=name), 
                       show.legend = FALSE, 
                       alpha = .2, 
@@ -126,8 +137,7 @@ ggplot(aes(x = pct_of_all_candidate_clips, y = reorder(name,pct_of_all_candidate
   labs(x = "Percent of Media Mentions",
        y=element_blank(),
        title="Media Mentions of Each Candidate",
-       subtitle="With density ridges depicting average mentions on a weekly basis") +
-  theme_cr() 
+       subtitle="With density ridges depicting average mentions on a weekly basis") 
 {% endhighlight %}
 
 ![center](/figs/2019-05-30-media-mentions/unnamed-chunk-4-1.png)
@@ -144,11 +154,10 @@ data %>%
   group_by(name) %>% 
   mutate(change = (pct_of_all_candidate_clips-(dplyr::lag(pct_of_all_candidate_clips, n=1, default=NA)))) %>% 
   filter(change >.2 | change < -.2) %>% 
-  ggplot(aes(x=reorder(as.factor(date),change),y=change, fill=name)) +
+  ggplot(aes(x=reorder(as.factor(date),change),y=change*100, fill=name)) +
   geom_col() +
   scale_fill_discrete(name="Candidate") +
-  theme_cr() +
-  theme(axis.text.x = element_text(angle = 30)) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   labs(x=element_blank(),
        y="Percent Change",
        title="Largest Differences in Weekly Media Mentions",
@@ -207,8 +216,12 @@ recentdata %>%
             aes(x = date, hjust = 1.2)) +
   geom_text(data = subset(finranking), size=3, 
             aes(x = date, hjust = -.2)) +
-  theme_cr() +
-  theme(legend.position = "none") +
+  theme(line = element_blank(), rect = element_blank(), axis.text = element_blank(), 
+        axis.title = element_blank(),
+        axis.ticks.length = unit(0, "pt"), axis.ticks.length.x = NULL, 
+        axis.ticks.length.x.top = NULL, axis.ticks.length.x.bottom = NULL, 
+        axis.ticks.length.y = NULL, axis.ticks.length.y.left = NULL, 
+        axis.ticks.length.y.right = NULL, legend.box = NULL, legend.position = "none") +
   labs(x = element_blank(),
        y = "Rank",
        title = "The Race for Media Attention",
