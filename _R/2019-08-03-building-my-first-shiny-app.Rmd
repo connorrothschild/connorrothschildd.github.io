@@ -1,9 +1,13 @@
 ---
 title: "Building my First Shiny App"
-date: "2019-08-03"
+comments: yes
+date: '2019-08-03'
+tags:
+- r
+- visualization
+- shiny
+- interactive
 category: R
-tags: [r, visualization, shiny, interactive]
-comments: true
 ---
 
 ```{r setup, include=FALSE}
@@ -159,12 +163,12 @@ server <- function(input, output) {
 }
 ```
 
-```{r, eval = FALSE}
-# shinyApp(ui = ui, server = server)
+```{r}
+shinyApp(ui = ui, server = server)
 ```
 
 ```{r}
-knitr::include_app("https://connorrothschild.shinyapps.io/ggvis/", 
-  height = "600px")
+# knitr::include_app("https://connorrothschild.shinyapps.io/ggvis/", 
+#   height = "600px")
 ```
 
