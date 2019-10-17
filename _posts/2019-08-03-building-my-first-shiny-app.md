@@ -1,102 +1,104 @@
 ---
 title: "Building my First Shiny App"
-comments: yes
-date: '2019-08-03'
-tags:
-- r
-- visualization
-- shiny
-- interactive
+date: "2019-08-03"
 category: R
+tags: [r, visualization, interactive]
+comments: true
 ---
 
 
 
-<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(ggplot2)</span>
-<span class="hl kwd">library</span><span class="hl std">(ggthemes)</span>
-<span class="hl kwd">library</span><span class="hl std">(dplyr)</span>
-<span class="hl kwd">library</span><span class="hl std">(ggrepel)</span>
-<span class="hl kwd">library</span><span class="hl std">(tools)</span>
-<span class="hl kwd">library</span><span class="hl std">(readxl)</span>
-<span class="hl kwd">library</span><span class="hl std">(tidyverse)</span>
-<span class="hl kwd">library</span><span class="hl std">(knitr)</span>
+I spent some time this weekend playing around with [Shiny](https://shiny.rstudio.com), RStudio's tool for creating interactive web apps. In a nod to my humble beginnings, I wanted to bring some interactivity to my first R project ([ever!](https://connorrothschild.github.io/r/automation/)).
 
-<span class="hl kwd">options</span><span class="hl std">(</span><span class="hl kwc">scipen</span><span class="hl std">=</span><span class="hl num">999</span><span class="hl std">)</span>
-<span class="hl kwd">theme_set</span><span class="hl std">(</span><span class="hl kwd">theme_minimal</span><span class="hl std">())</span>
+I finished the project roughly a year ago, in the summer between my freshman and sophomore year. It was an exercise in plotting multiple dimensions related to something of personal interest to me: automation and its impact on jobs. I wanted to use ggplot2 to recreate a visualization I came across on Bloomberg graphics. Here's [Bloomberg's visualization](https://www.bloomberg.com/graphics/2017-job-risk/) and here's [mine](https://connorrothschild.github.io/r/automation/).
 
-<span class="hl std">education</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">read_excel</span><span class="hl std">(</span><span class="hl str">&quot;education.xlsx&quot;</span><span class="hl std">,</span> <span class="hl kwc">skip</span><span class="hl std">=</span><span class="hl num">1</span><span class="hl std">)</span>
-<span class="hl std">salary</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">read_excel</span><span class="hl std">(</span><span class="hl str">&quot;national_M2017_dl.xlsx&quot;</span><span class="hl std">)</span>
-<span class="hl std">automation</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">read_excel</span><span class="hl std">(</span><span class="hl str">&quot;raw_state_automation_data.xlsx&quot;</span><span class="hl std">)</span>
+There are some obvious differences in our visualizations (our axes are inverted, they likely used D3.js while I used ggplot2), but for the most part, our visualizations depict the same lesson: lower-paying jobs and less-educated jobs are more susceptible to job displacement from automation.
 
-<span class="hl std">salary1</span> <span class="hl kwb">&lt;-</span> <span class="hl std">salary</span> <span class="hl opt">%&gt;%</span>
-<span class="hl kwd">group_by</span><span class="hl std">(OCC_TITLE)</span> <span class="hl opt">%&gt;%</span>
-<span class="hl kwd">mutate</span><span class="hl std">(</span><span class="hl kwc">natlwage</span> <span class="hl std">= TOT_EMP</span> <span class="hl opt">*</span> <span class="hl kwd">as.numeric</span><span class="hl std">(A_MEAN))</span> <span class="hl opt">%&gt;%</span>
-<span class="hl kwd">filter</span><span class="hl std">(</span><span class="hl opt">!</span><span class="hl kwd">is.na</span><span class="hl std">(TOT_EMP))</span> <span class="hl opt">%&gt;%</span>
-<span class="hl kwd">filter</span><span class="hl std">(</span><span class="hl opt">!</span><span class="hl kwd">is.na</span><span class="hl std">(A_MEAN))</span> <span class="hl opt">%&gt;%</span>
-<span class="hl kwd">filter</span><span class="hl std">(</span><span class="hl opt">!</span><span class="hl kwd">is.na</span><span class="hl std">(A_MEDIAN))</span>
+A year later, there are some things about my first visualization I would definitely change (title and axis label size, unnecessary corner labels, a potentially misleading geom_smooth line), but what I really want to work on now is bringing my project closer to the Bloomberg visualization by making it interactive. (I've actually already made an [interactive version](https://public.tableau.com/profile/connor.rothschild#!/vizhome/JobAutomationRiskintheUnitedStates/Final) of the visualization using Tableau, but I wanted to do it again in R to expand my skillset!)
 
-<span class="hl std">salary1</span><span class="hl opt">$</span><span class="hl std">A_MEDIAN</span> <span class="hl kwb">=</span> <span class="hl kwd">as.numeric</span><span class="hl std">(</span><span class="hl kwd">as.character</span><span class="hl std">(salary1</span><span class="hl opt">$</span><span class="hl std">A_MEDIAN))</span>
-<span class="hl std">salary2</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">select</span><span class="hl std">(salary1, OCC_TITLE, TOT_EMP, A_MEDIAN, natlwage)</span> <span class="hl opt">%&gt;%</span>
-<span class="hl kwd">distinct</span><span class="hl std">()</span>
+Enter Shiny, RStudio's tool for creating interactive visualizations. By using Shiny with [ggvis](https://ggvis.rstudio.com) (ggplot2's "successor" with interactive capabilities), I'm able to get pretty close to my initial inspiration. 
 
-<span class="hl kwd">library</span><span class="hl std">(plyr)</span>
-<span class="hl std">education1</span> <span class="hl kwb">&lt;-</span> <span class="hl std">education</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">select</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl std">...2)</span>
+ggvis's commands are pretty similar to ggplot2, and so the learning curve wasn't that steep (with the exception of setting the default size parameter for my points, which I finally solved with [this fix](https://stackoverflow.com/questions/43466172/chang-size-of-points-depending-on-one-column-with-ggvis)). Shiny was a bit more difficult to learn, but RStudio's [online video tutorials](https://shiny.rstudio.com/tutorial/) make it a lot less daunting. All in all, the project only took one night (~3 hours) to complete. Another example of R's accessibility and ease of use!
 
-<span class="hl std">education1</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">rename</span><span class="hl std">(education1,</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;2016 National Employment Matrix title and code&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;occupation&quot;</span><span class="hl std">,</span>
-                                   <span class="hl str">&quot;Less than high school diploma&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;lessthanhs&quot;</span><span class="hl std">,</span>
-                                   <span class="hl str">&quot;High school diploma or equivalent&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;hsdiploma&quot;</span><span class="hl std">,</span>
-                                   <span class="hl str">&quot;Some college, no degree&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;somecollege&quot;</span><span class="hl std">,</span>
-                                   <span class="hl str">&quot;Associate's degree&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;associates&quot;</span><span class="hl std">,</span>
-                                   <span class="hl str">&quot;Bachelor's degree&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;bachelors&quot;</span><span class="hl std">,</span>
-                                   <span class="hl str">&quot;Master's degree&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;masters&quot;</span><span class="hl std">,</span>
-                                   <span class="hl str">&quot;Doctoral or professional degree&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;professional&quot;</span><span class="hl std">))</span>
-
-<span class="hl std">education2</span> <span class="hl kwb">&lt;-</span> <span class="hl std">education1</span> <span class="hl opt">%&gt;%</span>
-  <span class="hl kwd">group_by</span><span class="hl std">(occupation)</span> <span class="hl opt">%&gt;%</span>
-  <span class="hl kwd">mutate</span><span class="hl std">(</span><span class="hl kwc">hsorless</span> <span class="hl std">= lessthanhs</span> <span class="hl opt">+</span> <span class="hl std">hsdiploma,</span>
-         <span class="hl kwc">somecollegeorassociates</span> <span class="hl std">= somecollege</span> <span class="hl opt">+</span> <span class="hl std">associates,</span>
-         <span class="hl kwc">postgrad</span> <span class="hl std">= masters</span> <span class="hl opt">+</span> <span class="hl std">professional)</span>
-
-<span class="hl std">education2</span> <span class="hl kwb">&lt;-</span> <span class="hl std">education2</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">drop_na</span><span class="hl std">()</span>
-
-<span class="hl std">salary2</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">rename</span><span class="hl std">(salary2,</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;OCC_TITLE&quot;</span> <span class="hl std">=</span> <span class="hl str">&quot;occupation&quot;</span><span class="hl std">))</span>
-<span class="hl std">salary2</span><span class="hl opt">$</span><span class="hl std">occupation</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">tolower</span><span class="hl std">(salary2</span><span class="hl opt">$</span><span class="hl std">occupation)</span>
-<span class="hl std">education2</span><span class="hl opt">$</span><span class="hl std">occupation</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">tolower</span><span class="hl std">(education2</span><span class="hl opt">$</span><span class="hl std">occupation)</span>
-<span class="hl std">edsal</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">merge</span><span class="hl std">(</span><span class="hl kwd">as.data.frame</span><span class="hl std">(education2),</span> <span class="hl kwd">as.data.frame</span><span class="hl std">(salary2),</span> <span class="hl kwc">by</span><span class="hl std">=</span><span class="hl str">&quot;occupation&quot;</span><span class="hl std">)</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">drop_na</span><span class="hl std">()</span>
-
-  <span class="hl std">typicaleducation</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">read_excel</span><span class="hl std">(</span><span class="hl str">&quot;typicaleducation.xlsx&quot;</span><span class="hl std">)</span>
-  <span class="hl std">typicaleducation2</span> <span class="hl kwb">&lt;-</span> <span class="hl std">typicaleducation</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">select</span><span class="hl std">(occupation,typicaled,workexp)</span>
-  <span class="hl std">typicaleducation2</span> <span class="hl kwb">&lt;-</span> <span class="hl std">typicaleducation2</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">drop_na</span><span class="hl std">()</span>
-  <span class="hl std">typicaleducation2</span><span class="hl opt">$</span><span class="hl std">occupation</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">tolower</span><span class="hl std">(typicaleducation2</span><span class="hl opt">$</span><span class="hl std">occupation)</span>
-  <span class="hl std">edsal2</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">merge</span><span class="hl std">(</span><span class="hl kwd">as.data.frame</span><span class="hl std">(edsal),</span> <span class="hl kwd">as.data.frame</span><span class="hl std">(typicaleducation2),</span> <span class="hl kwc">by</span><span class="hl std">=</span><span class="hl str">&quot;occupation&quot;</span><span class="hl std">)</span>
-
-  <span class="hl kwd">detach</span><span class="hl std">(package</span><span class="hl opt">:</span><span class="hl std">plyr)</span>
-  <span class="hl std">edsal3</span> <span class="hl kwb">&lt;-</span> <span class="hl std">edsal2</span> <span class="hl opt">%&gt;%</span>
-  <span class="hl kwd">group_by</span><span class="hl std">(typicaled)</span> <span class="hl opt">%&gt;%</span>
-  <span class="hl kwd">summarise</span><span class="hl std">(</span><span class="hl kwc">medianwage</span> <span class="hl std">=</span> <span class="hl kwd">mean</span><span class="hl std">(A_MEDIAN))</span>
-
-  <span class="hl std">automationwstates</span> <span class="hl kwb">&lt;-</span> <span class="hl std">automation</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">select</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl std">soc)</span>
-  <span class="hl std">automation1</span> <span class="hl kwb">&lt;-</span> <span class="hl std">automationwstates</span> <span class="hl opt">%&gt;%</span> <span class="hl kwd">select</span><span class="hl std">(occupation,probability,total)</span>
-
-  <span class="hl std">automation1</span><span class="hl opt">$</span><span class="hl std">occupation</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">str_replace_all</span><span class="hl std">(automation1</span><span class="hl opt">$</span><span class="hl std">occupation,</span> <span class="hl str">&quot;;&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;,&quot;</span><span class="hl std">)</span>
-  <span class="hl std">automation1</span><span class="hl opt">$</span><span class="hl std">occupation</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">tolower</span><span class="hl std">(automation</span><span class="hl opt">$</span><span class="hl std">occupation)</span>
-  <span class="hl std">data</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">merge</span><span class="hl std">(</span><span class="hl kwd">as.data.frame</span><span class="hl std">(edsal2),</span> <span class="hl kwd">as.data.frame</span><span class="hl std">(automation1),</span> <span class="hl kwc">by</span><span class="hl std">=</span><span class="hl str">&quot;occupation&quot;</span><span class="hl std">)</span>
-
-  <span class="hl std">data</span><span class="hl opt">$</span><span class="hl std">occupation</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">toTitleCase</span><span class="hl std">(data</span><span class="hl opt">$</span><span class="hl std">occupation)</span>
-</pre></div>
-</div></div>
+## Clean/Prepare Data
 
 
+{% highlight r %}
+library(ggplot2)
+library(ggthemes)
+library(dplyr)
+library(ggrepel)
+library(tools)
+library(readxl)
+library(tidyverse)
+library(knitr)
+
+options(scipen=999)
+theme_set(theme_minimal())
+
+education <- read_excel("education.xlsx", skip=1)
+salary <- read_excel("national_M2017_dl.xlsx")
+automation <- read_excel("raw_state_automation_data.xlsx")
+
+salary1 <- salary %>% 
+group_by(OCC_TITLE) %>% 
+mutate(natlwage = TOT_EMP * as.numeric(A_MEAN)) %>%
+filter(!is.na(TOT_EMP)) %>%
+filter(!is.na(A_MEAN)) %>%
+filter(!is.na(A_MEDIAN))
+
+salary1$A_MEDIAN = as.numeric(as.character(salary1$A_MEDIAN))
+salary2 <- select(salary1, OCC_TITLE, TOT_EMP, A_MEDIAN, natlwage) %>% 
+distinct()
+
+library(plyr)
+education1 <- education %>% select(-...2)
+
+education1 <- rename(education1, c("2016 National Employment Matrix title and code" = "occupation",
+                                   "Less than high school diploma" = "lessthanhs", 
+                                   "High school diploma or equivalent" = "hsdiploma",
+                                   "Some college, no degree" = "somecollege",
+                                   "Associate's degree" = "associates",
+                                   "Bachelor's degree" = "bachelors",
+                                   "Master's degree" = "masters",
+                                   "Doctoral or professional degree" = "professional"))
+
+education2 <- education1 %>% 
+  group_by(occupation) %>%
+  mutate(hsorless = lessthanhs + hsdiploma,
+         somecollegeorassociates = somecollege + associates,
+         postgrad = masters + professional)
+
+education2 <- education2 %>% drop_na()
+
+salary2 <- rename(salary2, c("OCC_TITLE" = "occupation"))
+salary2$occupation <- tolower(salary2$occupation)
+education2$occupation <- tolower(education2$occupation)
+edsal <- merge(as.data.frame(education2), as.data.frame(salary2), by="occupation") %>% drop_na()
+
+  typicaleducation <- read_excel("typicaleducation.xlsx")
+  typicaleducation2 <- typicaleducation %>% select(occupation,typicaled,workexp)
+  typicaleducation2 <- typicaleducation2 %>% drop_na()
+  typicaleducation2$occupation <- tolower(typicaleducation2$occupation)
+  edsal2 <- merge(as.data.frame(edsal), as.data.frame(typicaleducation2), by="occupation")
+
+  detach(package:plyr)
+  edsal3 <- edsal2 %>% 
+  group_by(typicaled) %>% 
+  summarise(medianwage = mean(A_MEDIAN))
+  
+  automationwstates <- automation %>% select(-soc)
+  automation1 <- automationwstates %>% select(occupation,probability,total)
+
+  automation1$occupation <- str_replace_all(automation1$occupation, ";", ",")
+  automation1$occupation <- tolower(automation$occupation)
+  data <- merge(as.data.frame(edsal2), as.data.frame(automation1), by="occupation")
+
+  data$occupation <- toTitleCase(data$occupation)
+{% endhighlight %}
+
+## Bring in Shiny
 
 
-<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># shinyApp(ui = ui, server = server)</span>
-</pre></div>
-</div></div>
 
-<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">knitr</span><span class="hl opt">::</span><span class="hl kwd">include_app</span><span class="hl std">(</span><span class="hl str">&quot;https://connorrothschild.shinyapps.io/ggvis/&quot;</span><span class="hl std">,</span>
-  <span class="hl kwc">height</span> <span class="hl std">=</span> <span class="hl str">&quot;600px&quot;</span><span class="hl std">)</span>
-</pre></div>
-<div class="error"><pre class="knitr r">## Error in file(con, &quot;rb&quot;): cannot open the connection
-</pre></div>
-</div></div>
-
+[You can find the Shiny app here](https://connorrothschild.shinyapps.io/ggvis/)!

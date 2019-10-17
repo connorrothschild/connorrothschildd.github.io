@@ -1,18 +1,28 @@
 ---
 title: "Building my First Shiny App"
-comments: yes
-date: '2019-08-03'
-tags:
-- r
-- visualization
-- shiny
-- interactive
+date: "2019-08-03"
 category: R
+tags: [r, visualization, interactive]
+comments: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
+
+I spent some time this weekend playing around with [Shiny](https://shiny.rstudio.com), RStudio's tool for creating interactive web apps. In a nod to my humble beginnings, I wanted to bring some interactivity to my first R project ([ever!](https://connorrothschild.github.io/r/automation/)).
+
+I finished the project roughly a year ago, in the summer between my freshman and sophomore year. It was an exercise in plotting multiple dimensions related to something of personal interest to me: automation and its impact on jobs. I wanted to use ggplot2 to recreate a visualization I came across on Bloomberg graphics. Here's [Bloomberg's visualization](https://www.bloomberg.com/graphics/2017-job-risk/) and here's [mine](https://connorrothschild.github.io/r/automation/).
+
+There are some obvious differences in our visualizations (our axes are inverted, they likely used D3.js while I used ggplot2), but for the most part, our visualizations depict the same lesson: lower-paying jobs and less-educated jobs are more susceptible to job displacement from automation.
+
+A year later, there are some things about my first visualization I would definitely change (title and axis label size, unnecessary corner labels, a potentially misleading geom_smooth line), but what I really want to work on now is bringing my project closer to the Bloomberg visualization by making it interactive. (I've actually already made an [interactive version](https://public.tableau.com/profile/connor.rothschild#!/vizhome/JobAutomationRiskintheUnitedStates/Final) of the visualization using Tableau, but I wanted to do it again in R to expand my skillset!)
+
+Enter Shiny, RStudio's tool for creating interactive visualizations. By using Shiny with [ggvis](https://ggvis.rstudio.com) (ggplot2's "successor" with interactive capabilities), I'm able to get pretty close to my initial inspiration. 
+
+ggvis's commands are pretty similar to ggplot2, and so the learning curve wasn't that steep (with the exception of setting the default size parameter for my points, which I finally solved with [this fix](https://stackoverflow.com/questions/43466172/chang-size-of-points-depending-on-one-column-with-ggvis)). Shiny was a bit more difficult to learn, but RStudio's [online video tutorials](https://shiny.rstudio.com/tutorial/) make it a lot less daunting. All in all, the project only took one night (~3 hours) to complete. Another example of R's accessibility and ease of use!
+
+## Clean/Prepare Data
 
 ```{r}
 library(ggplot2)
@@ -88,6 +98,7 @@ edsal <- merge(as.data.frame(education2), as.data.frame(salary2), by="occupation
   data$occupation <- toTitleCase(data$occupation)
 ```
 
+## Bring in Shiny
 
 ```{r, echo=FALSE}
 library(shiny)
@@ -161,14 +172,8 @@ server <- function(input, output) {
       labs(size="Total Employment", col="Education Level")
   })
 }
-```
 
-```{r}
 # shinyApp(ui = ui, server = server)
 ```
 
-```{r}
-knitr::include_app("https://connorrothschild.shinyapps.io/ggvis/",
-  height = "600px")
-```
-
+[You can find the Shiny app here](https://connorrothschild.shinyapps.io/ggvis/)!
