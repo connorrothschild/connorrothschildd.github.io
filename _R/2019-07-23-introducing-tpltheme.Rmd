@@ -10,7 +10,7 @@ comments: true
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-I've spent the majority of the summer as an [intern](https://www.texaspolicylab.org/profile/connor-rothschild/) with the Texas Policy Lab, working on primarily data science-related matters such as data cleaning and visualization. Most recently, I sought to create a custom theme in ggplot2 for TPL.
+I've spent the majority of the summer as an [intern](https://www.texaspolicylab.org/profile/connor-rothschild/) with the Texas Policy Lab, working on primarily data science-related matters such as data cleaning and visualization. Most recently, I sought to create a custom theme in `ggplot2` for TPL.
 
 The project was my first experience in developing my own R package. Prior to this project, the most familiarity I had with packages were from the `install.packages()` and `library()` commands.
 
