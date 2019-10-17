@@ -440,11 +440,18 @@ edsal &lt;- merge(as.data.frame(education2), as.data.frame(salary2), by=&quot;oc
   data &lt;- merge(as.data.frame(edsal2), as.data.frame(automation1), by=&quot;occupation&quot;)
 
   data$occupation &lt;- toTitleCase(data$occupation)</code></pre>
+<<<<<<< HEAD
 <pre class="r"><code># shinyApp(ui = ui, server = server)</code></pre>
 <pre class="r"><code>knitr::include_app(&quot;https://connorrothschild.shinyapps.io/ggvis/&quot;,
   height = &quot;600px&quot;)</code></pre>
 <iframe src="https://connorrothschild.shinyapps.io/ggvis/?showcase=0" width="672" height="600px">
 </iframe>
+=======
+<pre class="r"><code>shinyApp(ui = ui, server = server)</code></pre>
+<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
+<pre class="r"><code># knitr::include_app(&quot;https://connorrothschild.shinyapps.io/ggvis/&quot;, 
+#   height = &quot;600px&quot;)</code></pre>
+>>>>>>> 86eda25ea0fbcd0a126b7ab2c7dc4414237dd056
 
 
 

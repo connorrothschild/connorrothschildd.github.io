@@ -164,11 +164,20 @@ server <- function(input, output) {
 ```
 
 ```{r}
+<<<<<<< HEAD
 # shinyApp(ui = ui, server = server)
 ```
 
 ```{r}
 knitr::include_app("https://connorrothschild.shinyapps.io/ggvis/",
   height = "600px")
+=======
+shinyApp(ui = ui, server = server)
+```
+
+```{r}
+# knitr::include_app("https://connorrothschild.shinyapps.io/ggvis/", 
+#   height = "600px")
+>>>>>>> 86eda25ea0fbcd0a126b7ab2c7dc4414237dd056
 ```
 
