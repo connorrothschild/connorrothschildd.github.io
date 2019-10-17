@@ -55,19 +55,7 @@ ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
     labs(x="Species", y="Mean Sepal Width (cm)", fill="Species", title="Iris Dataset")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-3-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-10-1.png)
 
 ### Fonts
 
@@ -92,19 +80,7 @@ ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Species, siz
     labs(x="Sepal Width (cm)", y="Sepal Length (cm)", col="Species", size = "Petal Length", title="Iris Dataset")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_colour_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_colour_discrete
-## * cr::scale_colour_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_colour_discrete", "tpltheme")
-## * conflict_prefer("scale_colour_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-5-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-12-1.png)
 
 By specifying `style = "Texas"` within `set_tpl_theme`, the user may also create Texas-specific plots.
 
@@ -123,7 +99,7 @@ ggplot(data = tx_vac, mapping = aes(x = long, y = lat, group = group, fill = avg
        caption = "Source: Texas DSHS")
 {% endhighlight %}
 
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-6-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-13-1.png)
 
 And it also works for categorical variables:
 
@@ -144,19 +120,7 @@ tx_vac %>%
        caption = "Source: Texas DSHS")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-7-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-14-1.png)
 
 If the number of colors exceeds the number of colors in the TPL palette (9), the function `tpl_color_pal()` will drop the TPL color palette and return the greatest number of unique colors possible within the RColorBrewer's "Paired" palette (for more information on the use of RColorBrewer palettes, see [this chapter](https://bookdown.org/rdpeng/exdata/plotting-and-color-in-r.html#using-the-rcolorbrewer-palettes)).
 
@@ -169,19 +133,7 @@ tx_vac %>%
   labs(title = "Texas Counties")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-8-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-15-1.png)
 
 {% highlight r %}
 # default to print afterwards
@@ -206,17 +158,7 @@ plot <- ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
 add_tpl_logo(plot, position = "top right", scale = 1.5)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
+<img src="/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-16-1.png" title="center" alt="center" width="100%" />
 
 #### Logo Text
 
@@ -231,17 +173,7 @@ plot <- ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Spec
 add_tpl_logo_text(plot)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_colour_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_colour_discrete
-## * cr::scale_colour_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_colour_discrete", "tpltheme")
-## * conflict_prefer("scale_colour_discrete", "cr")
-{% endhighlight %}
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-17-1.png)
 
 The user may also need to specify `align`, which moves the plot horizontally across the bottom of the page.
 
@@ -254,17 +186,7 @@ plot <- ggplot(iris, aes(x=Species, y=Sepal.Width, fill=Species)) +
 add_tpl_logo_text(plot, align = 1)    
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-18-1.png)
 
 ### Additional Functions
 
@@ -282,19 +204,7 @@ ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Species, siz
     drop_axis(axis = "y")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_colour_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_colour_discrete
-## * cr::scale_colour_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_colour_discrete", "tpltheme")
-## * conflict_prefer("scale_colour_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-12-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-19-1.png)
 
 ### Colors
 
@@ -310,67 +220,13 @@ The function `view_palette` plots base color palettes included in `tpltheme`. Al
 
 {% highlight r %}
 p1 <- view_palette(palette = palette_tpl_main) + ggtitle("Categorical")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [conflicted] `view_palette` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::view_palette
-## * cr::view_palette
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("view_palette", "tpltheme")
-## * conflict_prefer("view_palette", "cr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
 p2 <- view_palette(palette = palette_tpl_diverging) + ggtitle("Diverging")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [conflicted] `view_palette` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::view_palette
-## * cr::view_palette
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("view_palette", "tpltheme")
-## * conflict_prefer("view_palette", "cr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
 p3 <- view_palette(palette = palette_tpl_sequential) + ggtitle("Sequential")
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `view_palette` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::view_palette
-## * cr::view_palette
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("view_palette", "tpltheme")
-## * conflict_prefer("view_palette", "cr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
 gridExtra::grid.arrange(p1, p2, p3, nrow = 1)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in arrangeGrob(...): object 'p1' not found
-{% endhighlight %}
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-20-1.png)
 
 These palettes were created using http://colorbrewer2.org and http://coloors.co and are colorblind friendly. 
 
@@ -397,45 +253,15 @@ normal <- diamonds %>%
   scale_fill_discrete() +
   scale_y_continuous(expand = expand_scale(mult = c(0, 0.001))) +
   drop_axis(axis = "x")
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
 reversed <- normal +
   labs(subtitle = "(reversed)") +
   scale_fill_discrete(reverse = TRUE)
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'normal' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 gridExtra::grid.arrange(normal, reversed)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in arrangeGrob(...): object 'normal' not found
-{% endhighlight %}
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-21-1.png)
 
 The user may specify the color palette in the `scale_fill_*` or `scale_color_*` functions in a ggplot call. Specifically, the user can specify the `palette` (categorical, diverging, sequential) and whether the palette should be reversed.
 
@@ -455,31 +281,11 @@ normal <- ggplot(diamonds) +
 reversed <- normal +
   labs(subtitle = "(reversed)") +
   scale_fill_discrete(reverse = TRUE)
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
 gridExtra::grid.arrange(normal, reversed, nrow = 1)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in arrangeGrob(...): object 'reversed' not found
-{% endhighlight %}
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-22-1.png)
 
 
 {% highlight r %}
@@ -499,51 +305,15 @@ normal <- diamonds %>%
   scale_fill_discrete() +
   scale_y_continuous(expand = expand_scale(mult = c(0, 0.001))) +
   drop_axis(axis = "x")
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
 reversed <- normal +
   labs(subtitle = "(reversed)") +
   scale_fill_discrete(reverse = TRUE)
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
-
-
-
-{% highlight r %}
 gridExtra::grid.arrange(normal, reversed)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in arrangeGrob(...): object 'reversed' not found
-{% endhighlight %}
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-23-1.png)
 
 
 {% highlight r %}
@@ -563,19 +333,7 @@ ggplot(data = data, aes(x = year, y = gdpPercap, fill = country)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_fill_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_fill_discrete
-## * cr::scale_fill_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_fill_discrete", "tpltheme")
-## * conflict_prefer("scale_fill_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-17-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-24-1.png)
 
 ### Restore Defaults
 
@@ -600,19 +358,7 @@ ggplot(iris, aes(x=jitter(Sepal.Width), y=jitter(Sepal.Length), col=Species, siz
     labs(x="Sepal Width (cm)", y="Sepal Length (cm)", col="Species", size = "Petal Length", title="Iris Dataset")
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_colour_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggplot2::scale_colour_discrete
-## * cr::scale_colour_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_colour_discrete", "ggplot2")
-## * conflict_prefer("scale_colour_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-18-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-25-1.png)
 
 To restore the TPL theme, simply call `set_tpl_theme()`:
 
@@ -622,16 +368,4 @@ set_tpl_theme()
 last_plot()
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## [conflicted] `scale_colour_discrete` found in 2 packages.
-## Either pick the one you want with `::` 
-## * tpltheme::scale_colour_discrete
-## * cr::scale_colour_discrete
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("scale_colour_discrete", "tpltheme")
-## * conflict_prefer("scale_colour_discrete", "cr")
-{% endhighlight %}
-
-![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-19-1.png)
+![center](/figs/2019-07-23-introducing-tpltheme/unnamed-chunk-26-1.png)
