@@ -1,6 +1,6 @@
 ---
 title: "My First Package! Introducing 'tpltheme'"
-date: "2019-06-11"
+date: "2019-07-23"
 category: R
 tags: [r, visualization, package]
 comments: true
