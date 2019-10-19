@@ -205,7 +205,6 @@ b_gif <- animate(animation2,
 {% endhighlight %}
 
 
-
 {% highlight r %}
 b_gif
 {% endhighlight %}
