@@ -10,7 +10,7 @@ In this post, I explore which presidential candidates are discussed most frequen
 
 
 
-NOTE: This post has become somewhat outdated since it's [original publication](https://connorrothschild.github.io/media-mentions/) because the dataset (linked via FiveThirtyEight's GitHub) has changed variable names and some of the data has changed. 
+Note: This post has become somewhat outdated since it's [original publication](https://connorrothschild.github.io/media-mentions/) because the dataset (linked via FiveThirtyEight's GitHub) has changed variable names and some of the data has changed. 
 
 You can find a less technical version of this post without code [on my blog](https://www.connorrothschild.com/single-post/2019/05/30/The-Race-for-Media-Attention).
 
@@ -34,7 +34,6 @@ library(RColorBrewer)
 library(devtools)
 library(knitr)
 library(cr)
-conflicted::conflict_prefer("filter", "dplyr")
 
 set_cr_theme(font = "lato")
 
@@ -69,7 +68,7 @@ data %>%
   group_by(name) %>% 
   summarise(pct_of_all_candidate_clips = mean(pct_of_all_candidate_clips)*100) %>% 
   top_n(12, wt = pct_of_all_candidate_clips) %>% 
-  ggplot(aes(x=reorder(name,pct_of_all_candidate_clips),y=pct_of_all_candidate_clips, fill=name)) +
+  ggplot(aes(x=reorder(name,pct_of_all_candidate_clips),y=pct_of_all_candidate_clips)) +
   geom_col(show.legend=FALSE) +
   coord_flip() +
   fix_bars() +
@@ -78,7 +77,7 @@ data %>%
        title="Average Proportion of Media Coverage on a Weekly Basis")
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-2-1.png)
+![center](/figs/2019-05-30-media-mentions/unnamed-chunk-20-1.png)
 
 Somewhat unsurprisingly. Joe Biden and Bernie Sanders lead the pack in media attention. Joe Biden tends to receive significantly more media attention than the average candidate (a weekly average of 0.9% of overall media content compared to 0.14% for the average candidate).
 
@@ -118,7 +117,7 @@ data %>%
                                   "Kamala Harris", "Beto O'Rourke", "Cory Booker"))
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-3-1.png)
+![center](/figs/2019-05-30-media-mentions/unnamed-chunk-21-1.png)
 
 Evidently, much of Joe Biden's popularity in the media can be explained by a few large spikes in weekly media mentions. We can explore the distribution of weekly media mentions using a visualization known as a [density ridge plot](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html).
 
@@ -140,7 +139,7 @@ ggplot(aes(x = pct_of_all_candidate_clips*100, y = reorder(name,pct_of_all_candi
        subtitle="With density ridges depicting average mentions on a weekly basis") 
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-4-1.png)
+![center](/figs/2019-05-30-media-mentions/unnamed-chunk-22-1.png)
 
 This plot illustrates that most candidates enjoy the same levels of media coverage from one week to another. Joe Biden, however, often has weeks in which he receives much more attention than usual, as evidenced by his small peaks throughout the plot. Bernie Sanders, Kamala Harris, and Beto O'Rourke also experienced a few jumps in attention, likely when they announced their candidacy for the presidency.
 
@@ -164,7 +163,7 @@ data %>%
        subtitle="Subtracting a given week's % mentions from the week prior")
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-5-1.png)
+![center](/figs/2019-05-30-media-mentions/unnamed-chunk-23-1.png)
 
 Unsurprisingly, the bars tend to mirror one another. If a candidate enjoys a steep increase in media attention one week, they are likely to see a correlated drop in the following week (if that week were really a spike in attention). The plot suggests that Joe Biden's announcement (on April 25th) led to the most dramatic change in media attention in the 2020 cycle so far. Bernie Sanders also witnessed a spike in attention in the week following his announcement on February 19th. The same is true for the other candidates included in this plot.
 
@@ -216,6 +215,7 @@ recentdata %>%
             aes(x = date, hjust = 1.2)) +
   geom_text(data = subset(finranking), size=3, 
             aes(x = date, hjust = -.2)) +
+  # scale_color_brewer(palette = "Paired") +
   theme(line = element_blank(), rect = element_blank(), axis.text = element_blank(), 
         axis.title = element_blank(),
         axis.ticks.length = unit(0, "pt"), axis.ticks.length.x = NULL, 
@@ -228,7 +228,53 @@ recentdata %>%
        subtitle = "Candidates ranked by weekly media mentions")
 {% endhighlight %}
 
-![center](/figs/2019-05-30-media-mentions/unnamed-chunk-6-1.png)
+![center](/figs/2019-05-30-media-mentions/unnamed-chunk-24-1.png)
+
+Let's focus on the meteoric rise of Pete Buttigieg:
+
+
+{% highlight r %}
+petedata <- recentdata %>% 
+  mutate(pete = ifelse(name == "Pete Buttigieg", 1, 0))
+
+petedata %>% 
+  ggplot(aes(x=date, y=rank, group=name, label=name)) +
+  # pete's line
+  geom_line(aes(color = "#1089FF"),
+                data = subset (petedata, pete == 1), 
+            size = 2, show.legend = FALSE) +
+  # everyone else's line
+  geom_line(aes(alpha = 1), 
+            data = subset(petedata, pete != 1),
+            size = .5, show.legend = FALSE) +
+  geom_point(aes(fill = "grey80", alpha = 1), 
+             data = subset(petedata, pete == 1), size = 4) +
+  geom_point(aes(alpha = 1), 
+             data = subset(petedata, pete != 1), size = 2) +
+  geom_point(color = "#FFFFFF", size = 1) +
+  # scale_fill_manual(values = mycolors) +
+  scale_y_reverse(breaks = 1:show.top.n) +
+  scale_x_date(expand = c(0,29)) +
+  coord_cartesian(ylim = c(1,show.top.n)) +
+  geom_text(data = subset(startranking), size=3, 
+            aes(x = date, hjust = 1.2)) +
+  geom_text(data = subset(finranking), size=3, 
+            aes(x = date, hjust = -.2)) +
+  # scale_fill_brewer(palette = "Dark2") +
+  theme(line = element_blank(), rect = element_blank(), axis.text = element_blank(), 
+        axis.title = element_blank(),
+        axis.ticks.length = unit(0, "pt"), axis.ticks.length.x = NULL, 
+        axis.ticks.length.x.top = NULL, axis.ticks.length.x.bottom = NULL, 
+        axis.ticks.length.y = NULL, axis.ticks.length.y.left = NULL, 
+        axis.ticks.length.y.right = NULL, legend.box = NULL, legend.position = "none") +
+  labs(x = element_blank(),
+       y = "Rank",
+       title = "Out of Nowhere",
+       subtitle = "Pete Buttigieg's Rapid Rise in Media Mentions")
+{% endhighlight %}
+
+![center](/figs/2019-05-30-media-mentions/unnamed-chunk-25-1.png)
+
 
 Some takeaways:
 

@@ -12,7 +12,7 @@ In this post, I explore which presidential candidates are discussed most frequen
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-NOTE: This post has become somewhat outdated since it's [original publication](https://connorrothschild.github.io/media-mentions/) because the dataset (linked via FiveThirtyEight's GitHub) has changed variable names and some of the data has changed. 
+Note: This post has become somewhat outdated since it's [original publication](https://connorrothschild.github.io/media-mentions/) because the dataset (linked via FiveThirtyEight's GitHub) has changed variable names and some of the data has changed. 
 
 You can find a less technical version of this post without code [on my blog](https://www.connorrothschild.com/single-post/2019/05/30/The-Race-for-Media-Attention).
 
@@ -35,7 +35,6 @@ library(RColorBrewer)
 library(devtools)
 library(knitr)
 library(cr)
-conflicted::conflict_prefer("filter", "dplyr")
 
 set_cr_theme(font = "lato")
 
@@ -63,7 +62,7 @@ data %>%
   group_by(name) %>% 
   summarise(pct_of_all_candidate_clips = mean(pct_of_all_candidate_clips)*100) %>% 
   top_n(12, wt = pct_of_all_candidate_clips) %>% 
-  ggplot(aes(x=reorder(name,pct_of_all_candidate_clips),y=pct_of_all_candidate_clips, fill=name)) +
+  ggplot(aes(x=reorder(name,pct_of_all_candidate_clips),y=pct_of_all_candidate_clips)) +
   geom_col(show.legend=FALSE) +
   coord_flip() +
   fix_bars() +
@@ -198,6 +197,7 @@ recentdata %>%
             aes(x = date, hjust = 1.2)) +
   geom_text(data = subset(finranking), size=3, 
             aes(x = date, hjust = -.2)) +
+  # scale_color_brewer(palette = "Paired") +
   theme(line = element_blank(), rect = element_blank(), axis.text = element_blank(), 
         axis.title = element_blank(),
         axis.ticks.length = unit(0, "pt"), axis.ticks.length.x = NULL, 
@@ -209,6 +209,49 @@ recentdata %>%
        title = "The Race for Media Attention",
        subtitle = "Candidates ranked by weekly media mentions")
 ```
+
+Let's focus on the meteoric rise of Pete Buttigieg:
+
+```{r}
+petedata <- recentdata %>% 
+  mutate(pete = ifelse(name == "Pete Buttigieg", 1, 0))
+
+petedata %>% 
+  ggplot(aes(x=date, y=rank, group=name, label=name)) +
+  # pete's line
+  geom_line(aes(color = "#1089FF"),
+                data = subset (petedata, pete == 1), 
+            size = 2, show.legend = FALSE) +
+  # everyone else's line
+  geom_line(aes(alpha = 1), 
+            data = subset(petedata, pete != 1),
+            size = .5, show.legend = FALSE) +
+  geom_point(aes(fill = "grey80", alpha = 1), 
+             data = subset(petedata, pete == 1), size = 4) +
+  geom_point(aes(alpha = 1), 
+             data = subset(petedata, pete != 1), size = 2) +
+  geom_point(color = "#FFFFFF", size = 1) +
+  # scale_fill_manual(values = mycolors) +
+  scale_y_reverse(breaks = 1:show.top.n) +
+  scale_x_date(expand = c(0,29)) +
+  coord_cartesian(ylim = c(1,show.top.n)) +
+  geom_text(data = subset(startranking), size=3, 
+            aes(x = date, hjust = 1.2)) +
+  geom_text(data = subset(finranking), size=3, 
+            aes(x = date, hjust = -.2)) +
+  # scale_fill_brewer(palette = "Dark2") +
+  theme(line = element_blank(), rect = element_blank(), axis.text = element_blank(), 
+        axis.title = element_blank(),
+        axis.ticks.length = unit(0, "pt"), axis.ticks.length.x = NULL, 
+        axis.ticks.length.x.top = NULL, axis.ticks.length.x.bottom = NULL, 
+        axis.ticks.length.y = NULL, axis.ticks.length.y.left = NULL, 
+        axis.ticks.length.y.right = NULL, legend.box = NULL, legend.position = "none") +
+  labs(x = element_blank(),
+       y = "Rank",
+       title = "Out of Nowhere",
+       subtitle = "Pete Buttigieg's Rapid Rise in Media Mentions")
+```
+
 
 Some takeaways:
 

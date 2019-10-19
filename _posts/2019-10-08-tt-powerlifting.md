@@ -133,7 +133,7 @@ max_lifts_final %>%
                      color="grey20", size=4, vjust=-3, fontface="bold")
 {% endhighlight %}
 
-![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-11-1.png)
+![center](/figs/2019-10-08-tt-powerlifting/unnamed-chunk-8-1.png)
 
 Finally, we animate, using Thomas Pedersen's wonderful [gganimate package](https://github.com/thomasp85/gganimate):
 
@@ -203,7 +203,6 @@ b_gif <- animate(animation2,
                  duration = 25,
         width = 800, height = 200)
 {% endhighlight %}
-
 
 
 

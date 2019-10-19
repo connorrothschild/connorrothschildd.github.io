@@ -129,7 +129,7 @@ max_lifts_final %>%
 
 Finally, we animate, using Thomas Pedersen's wonderful [gganimate package](https://github.com/thomasp85/gganimate):
 
-```{r, message = FALSE}
+```{r, message = FALSE, , cache = TRUE}
 library(gganimate)
 animation <- max_lifts_final %>% 
   ggplot() + 
@@ -162,7 +162,7 @@ a_gif
 
 I'd like to include another GIF: a line chart of differences over time
 
-```{r, message = FALSE}
+```{r, message = FALSE, cache = TRUE}
 animation2 <- max_lifts_final %>% 
   ungroup %>% 
   mutate(lift = case_when(lift == "best3bench_kg" ~ "Bench",
@@ -192,7 +192,7 @@ b_gif
 Next, combine them using `magick` (thanks to [this
 post](https://github.com/thomasp85/gganimate/wiki/Animation-Composition)):
 
-```{r, message = FALSE}
+```{r, message = FALSE, cache = TRUE}
 library(magick)
 a_mgif <- image_read(a_gif)
 b_mgif <- image_read(b_gif)
