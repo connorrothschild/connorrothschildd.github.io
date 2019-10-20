@@ -5,8 +5,8 @@ main:
 #    url: /categories/
 #  - title: "Tags"
 #    url: /tags/
+  - title: "Resume"
+    url: /resume/
   - title: "About"
     url: /about/
-  - title: "CV"
-    url: /markdown-cv/
   
