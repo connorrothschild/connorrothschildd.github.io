@@ -7,3 +7,6 @@ main:
 #    url: /tags/
   - title: "About"
     url: /about/
+  - title: "CV"
+    url: /markdown-cv/
+  
