@@ -1,6 +1,6 @@
 ---
 permalink: /about/
-title: "Hi, I'm Connor Rothschild"
+title: "Hi, I'm Connor Rothschild."
 ---
 
 I'm a junior at [Rice University](https://www.rice.edu) studying Social Policy Analysis and Political Science, and pursuing a minor in data science.
