@@ -64,7 +64,7 @@ filter(if (add != 8) add >= reveal else reveal %in% c(1:8))
 
 This may make *0 sense* right now, but here's why we have it.
 
-The important part (and somewhat difficult thing to understand) about this step is that your plot object has some **data which corresponds to an updating variable**. For me, I added a variable called `reveal` for each step of the visualization. For me, this meant having reveal correspond to a typical level of education for a given job. 
+The important part (and somewhat difficult thing to understand) about this step is that your plot object has some **data which corresponds to an updating variable**. For me, I added a variable called *reveal* for each step of the visualization. For me, this meant having reveal correspond to a typical level of education for a given job. 
 
 ```{r}
 data <- data %>% 
@@ -80,7 +80,7 @@ data <- data %>%
   ))
 ```
 
-What this means is that every time the post observes an event (a scroll), it will update according to the number in the `reveal` column.
+What this means is that every time the post observes an event (a scroll), it will update according to the number in the *reveal* column.
 
 So, when my plot object has a line of code which says: 
 
@@ -90,11 +90,11 @@ filter(if (add != 8) add >= reveal else reveal %in% c(1:8))
 
 That can be read as "Update the plot object to include all data points **up until the current point** encoded in reveal." 
 
-But, it also depends on what level of `add` we are at; if `add` == 8 (the last data point, e.g. the concluding plot), then we want to show *all data points*.
+But, it also depends on what level of *add* we are at; if *add* == 8 (the last data point, e.g. the concluding plot), then we want to show *all data points*.
 
-"Okay, okay. But what is `add`???"
+"Okay, okay. But what is *add*???"
 
-Good question. `add` is the variable I constructed to correspond to the user's input (in this case, the scroll!). When we put it all together, we're going to wrap our plot object into a rendering function *inside* the server function. Confusing? It looks like this:
+Good question. *add* is the variable I constructed to correspond to the user's input (in this case, the scroll!). When we put it all together, we're going to wrap our plot object into a rendering function *inside* the server function. Confusing? It looks like this:
 
 ```{r}
 server <- function(input, output, session) {
@@ -121,7 +121,7 @@ server <- function(input, output, session) {
 
 What's happening here? Within the server function, we're doing two things:
 
-First, we're creating the plot object. Because we have the command `add <- input$scr` *inside* the function `renderPlotly`, our plot object will be dynamically updated along with `input$scr`.
+First, we're creating the plot object. Because we have the command *add <- input$scr* **inside** the function `renderPlotly`, our plot object will be dynamically updated along with *input$scr*.
 
 This makes more sense when you connect it to the ui. In our ui function, we include a `scrolly_container` from the scrollytell package. Within that, we make our `outputId` correspond to the name of our updating input (in this case, *scr*).
 
