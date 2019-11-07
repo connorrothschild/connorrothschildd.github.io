@@ -3,7 +3,9 @@ permalink: /r/
 title: "R Visualization Portfolio"
 ---
 
- <center> [Scrollytelling in R](https://connorrothschild.shinyapps.io/automation/) </center>
+<p align = "center>
+            
+[Scrollytelling in R](https://connorrothschild.shinyapps.io/automation/)
 [![Scrollytelling in R](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/scrollytelling.jpg)](https://connorrothschild.shinyapps.io/automation/)
 
 [![Tidy Tuesday: Powerlifting](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/powerlifting.jpg)](https://connorrothschild.github.io/r/tt-powerlifting/) [Tidy Tuesday: Powerlifting](https://connorrothschild.github.io/r/tt-powerlifting/)
@@ -17,3 +19,5 @@ title: "R Visualization Portfolio"
 [![Bible Babies](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/biblebabies.jpg)](https://connorrothschild.github.io/r/bible-babies/) [Bible Babies](https://connorrothschild.github.io/r/bible-babies/)
 
 [![STEMigration](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/stemigration.jpg)](https://connorrothschild.github.io/r/stem-migration/) [STEMigration](https://connorrothschild.github.io/r/stem-migration/)
+
+</p>
