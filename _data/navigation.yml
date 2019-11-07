@@ -7,6 +7,8 @@ main:
 #    url: /tags/
   - title: "Resume"
     url: /resume/
+  - title: "Vizualizations"
+    url: ../D3.js/
   - title: "About"
     url: /about/
   - title: "Contact"
