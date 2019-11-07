@@ -7,8 +7,8 @@ main:
 #    url: /tags/
   - title: "Resume"
     url: /resume/
-  - title: "Vizualizations"
-    url: /vizualizations/
+  - title: "Visualizations"
+    url: /visualizations/
   - title: "About"
     url: /about/
   - title: "Contact"
