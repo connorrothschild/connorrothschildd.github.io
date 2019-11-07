@@ -1,5 +1,5 @@
 ---
-permalink: /R/
+permalink: /r/
 title: "R Visualization Portfolio"
 ---
 
