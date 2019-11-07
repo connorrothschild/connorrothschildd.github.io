@@ -8,7 +8,7 @@ main:
   - title: "Resume"
     url: /resume/
   - title: "Vizualizations"
-    url: ../D3.js/
+    url: /vizualizations/
   - title: "About"
     url: /about/
   - title: "Contact"
