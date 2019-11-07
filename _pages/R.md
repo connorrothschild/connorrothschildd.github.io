@@ -3,7 +3,7 @@ permalink: /r/
 title: "R Visualization Portfolio"
 ---
 
-<span style = "align:center">
+<p align = "center">
             
 [Scrollytelling in R](https://connorrothschild.shinyapps.io/automation/)
 
@@ -33,4 +33,4 @@ title: "R Visualization Portfolio"
 
 [![STEMigration](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/stemigration.jpg)](https://connorrothschild.github.io/r/stem-migration/) 
 
-</span>
+</p>
