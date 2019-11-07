@@ -3,7 +3,8 @@ permalink: /r/
 title: "R Visualization Portfolio"
 ---
 
-[![Scrollytelling in R](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/scrollytelling.jpg)](https://connorrothschild.shinyapps.io/automation/) <center>[Scrollytelling in R]</center>(https://connorrothschild.shinyapps.io/automation/)
+ <center> [Scrollytelling in R](https://connorrothschild.shinyapps.io/automation/) </center>
+[![Scrollytelling in R](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/scrollytelling.jpg)](https://connorrothschild.shinyapps.io/automation/)
 
 [![Tidy Tuesday: Powerlifting](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/powerlifting.jpg)](https://connorrothschild.github.io/r/tt-powerlifting/) [Tidy Tuesday: Powerlifting](https://connorrothschild.github.io/r/tt-powerlifting/)
 
