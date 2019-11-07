@@ -3,7 +3,7 @@ permalink: /r/
 title: "R Visualization Portfolio"
 ---
 
-<#p align = "center">
+#<p align = "center">
             
 [Scrollytelling in R](https://connorrothschild.shinyapps.io/automation/)
 
