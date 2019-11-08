@@ -88,8 +88,8 @@ footer:
 defaults:
   # _posts
   - scope:
-      path: "/about"
-      type: about
+      path: ""
+      type: posts
     values:
       layout: single
       author_profile: true
