@@ -1,5 +1,6 @@
 ---
 permalink: /about/
+layout: home
 title: "Hi, I'm Connor Rothschild."
 ---
 
