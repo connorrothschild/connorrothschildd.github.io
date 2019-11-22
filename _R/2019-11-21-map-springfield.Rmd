@@ -143,7 +143,7 @@ map_bw
 Finally, save the plot:
 
 ```{r}  
-# ggsave(map_bw, filename = "bw_springfield_map.png", width = 3.234, height = 5.016)
+ggsave(map_bw, filename = "bw_springfield_map.png", width = 3.234, height = 5.016)
 ```
 
 Replicate that code with different colors:
@@ -216,5 +216,5 @@ map_gold <- plot_gold +
 
 map_gold
   
-# ggsave(map_gold, filename = "gold_springfield_map.png", width = 3.234, height = 5.016)
+ggsave(map_gold, filename = "gold_springfield_map.png", width = 3.234, height = 5.016)
 ```
