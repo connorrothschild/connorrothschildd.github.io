@@ -2,7 +2,11 @@
 permalink: /r/
 title: "R Visualization Portfolio"
 ---
-            
+         
+[Streetmaps using ggplot2](https://connorrothschild.github.io/r/map-springfield/)
+
+[![Scrollytelling in R](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/streetmap.jpg)](https://connorrothschild.github.io/r/map-springfield/)
+         
 [Scrollytelling in R](https://connorrothschild.shinyapps.io/automation/)
 
 [![Scrollytelling in R](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/scrollytelling.gif)](https://connorrothschild.shinyapps.io/automation/)
