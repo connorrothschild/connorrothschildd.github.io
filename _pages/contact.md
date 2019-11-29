@@ -1,6 +1,7 @@
 ---
 permalink: /contact/
 title: "Get in Touch"
+read_time: false
 ---
 
 Have questions about me, my work, or how I could help your organization? I'd be more than happy to talk.
