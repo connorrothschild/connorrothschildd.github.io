@@ -1,6 +1,7 @@
 ---
 permalink: /r/
 title: "R Visualization Portfolio"
+read_time: false
 ---
          
 [Streetmaps using ggplot2](https://connorrothschild.github.io/r/map-springfield/)
