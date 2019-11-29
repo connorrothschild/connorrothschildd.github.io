@@ -1,6 +1,7 @@
 ---
-layout: single
 title: "Hi, I'm Connor Rothschild."
+layout: single
+read_time: false
 ---
 
 I'm a junior at [Rice University](https://www.rice.edu) studying Social Policy Analysis and Political Science, and pursuing a minor in data science.
