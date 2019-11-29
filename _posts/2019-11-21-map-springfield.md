@@ -1,7 +1,7 @@
 ---
 title: "Creating a Streetmap of Springfield, MO"
 date: "2019-11-21"
-category: r
+category: R
 tags: [r, visualization, maps, best of]
 comments: true
 ---
