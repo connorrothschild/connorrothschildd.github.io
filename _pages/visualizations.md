@@ -8,8 +8,6 @@ Here you can find a collection of my data visualizations.
 
 I've split my portfolio into two sections: 
 
-# [R](https://connorrothschild.github.io/r/)![R](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/mediamentions.jpg)
+# [R](https://connorrothschild.github.io/r/)[![R](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/scrollytelling.gif)](https://connorrothschild.shinyapps.io/automation/)
 
-# [D3.js](https://connorrothschild.github.io/d3js/)![D3.js](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/kanye.jpg)
-
-
+# [D3.js](https://connorrothschild.github.io/d3js/)[![D3.js](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/kanye.jpg)](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/kanye.jpg)
