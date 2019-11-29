@@ -89,7 +89,7 @@ defaults:
    #_posts
   - scope:
       path: ""
-      type: posts
+      type: pages #posts
     values:
       layout: single
       author_profile: true
@@ -104,6 +104,16 @@ defaults:
     values:
       layout: single
       author_profile: true
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
       
 #category_archive:
 #  type: liquid
