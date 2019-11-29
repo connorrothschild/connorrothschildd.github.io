@@ -1,5 +1,4 @@
 ---
-permalink: /about/
 layout: single
 title: "Hi, I'm Connor Rothschild."
 ---
