@@ -10,7 +10,7 @@ comments: true
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-In this post, I expand upon the wonderful [Christian Burkhart's](https://christianburkhart.de/) wonderful [ggplot2tor tutorial](https://ggplot2tutor.com/streetmaps/streetmaps/) on streetmap creation using ggplot2. My process differs slightly from his in that I include text using `geom_label`, rather than PowerPoint, to create the text annotations. (This was much more difficult!)
+In this post, I expand upon [Christian Burkhart's](https://christianburkhart.de/) wonderful [ggplot2tor tutorial](https://ggplot2tutor.com/streetmaps/streetmaps/) on streetmap creation using ggplot2. My process differs slightly from his in that I include text using `geom_label`, rather than PowerPoint, to create the text annotations. (This was much more difficult!)
 
 ```{r}
 library(tidyverse)

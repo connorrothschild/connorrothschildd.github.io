@@ -8,7 +8,7 @@ comments: true
 
 
 
-In this post, I expand upon the wonderful [Christian Burkhart's](https://christianburkhart.de/) wonderful [ggplot2tor tutorial](https://ggplot2tutor.com/streetmaps/streetmaps/) on streetmap creation using ggplot2. My process differs slightly from his in that I include text using `geom_label`, rather than PowerPoint, to create the text annotations. (This was much more difficult!)
+In this post, I expand upon [Christian Burkhart's](https://christianburkhart.de/) wonderful [ggplot2tor tutorial](https://ggplot2tutor.com/streetmaps/streetmaps/) on streetmap creation using ggplot2. My process differs slightly from his in that I include text using `geom_label`, rather than PowerPoint, to create the text annotations. (This was much more difficult!)
 
 
 {% highlight r %}
@@ -31,17 +31,7 @@ streets <- getbb("Springfield Missouri")%>%
                   value = c("motorway", "primary", 
                             "secondary", "tertiary")) %>%
   osmdata_sf()
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in curl::curl_fetch_memory(url, handle = handle): Error in the HTTP2 framing layer
-{% endhighlight %}
-
-
-
-{% highlight r %}
 small_streets <- getbb("Springfield Missouri")%>%
   opq()%>%
   add_osm_feature(key = "highway", 
@@ -49,17 +39,7 @@ small_streets <- getbb("Springfield Missouri")%>%
                             "unclassified",
                             "service", "footway")) %>%
   osmdata_sf()
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in curl::curl_fetch_memory(url, handle = handle): Error in the HTTP2 framing layer
-{% endhighlight %}
-
-
-
-{% highlight r %}
 river <- getbb("Springfield Missouri")%>%
   opq()%>%
   add_osm_feature(key = "waterway", value = "river") %>%
@@ -119,12 +99,6 @@ plot_bw <- ggplot() +
   )
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in fortify(data): object 'streets' not found
-{% endhighlight %}
-
 Finally, we can introduce our text elements using `geom_text` (as well as borders using `geom_rect`).
 
 
@@ -166,37 +140,17 @@ map_bw <- plot_bw +
           fill = "white",
           label.size = 0,
           family = "Lato")
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'plot_bw' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 map_bw
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'map_bw' not found
-{% endhighlight %}
+![center](/figs/2019-11-21-map-springfield/unnamed-chunk-6-1.png)
 
 Finally, save the plot:
 
 
 {% highlight r %}
 ggsave(map_bw, filename = "bw_springfield_map.png", width = 3.234, height = 5.016)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in grid.draw(plot): object 'map_bw' not found
 {% endhighlight %}
 
 Replicate that code with different colors:
@@ -228,17 +182,7 @@ plot_gold <- ggplot() +
     panel.background = element_rect(fill = "#282828"),
     plot.margin=unit(c(0,-0.5,0,0), "mm")
   )
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in fortify(data): object 'streets' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 map_gold <- plot_gold +
   geom_rect(aes(xmax = right+.005, xmin = left-.005, ymin = bottom+.005, ymax = top-.005),
             alpha = 0,
@@ -277,34 +221,12 @@ map_gold <- plot_gold +
             fill = "#282828",
             label.size = 0,
             family = "Lato")
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'plot_gold' not found
-{% endhighlight %}
-
-
-
-{% highlight r %}
 map_gold
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'map_gold' not found
-{% endhighlight %}
-
-
+![center](/figs/2019-11-21-map-springfield/unnamed-chunk-8-1.png)
 
 {% highlight r %}
 ggsave(map_gold, filename = "gold_springfield_map.png", width = 3.234, height = 5.016)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in grid.draw(plot): object 'map_gold' not found
 {% endhighlight %}
