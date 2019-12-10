@@ -29,8 +29,11 @@ set_cr_theme(font = "lato")
 
 ### Load datasets: 
 There are three datasets for this project.
+
 1) Educational attainment broke down by occupation, provided by BLS [here](https://www.bls.gov/emp/ep_education_training_system.htm)
+
 2) Salaries, median hourly/annual wages broke down by occupation, provided by BLS [here](https://www.bls.gov/oes/current/oes_nat.htm#11-0000)
+
 3) Risk of automation broken down by occupation, provided by Carl Benedikt Frey and Michael A. Osborne (but compiled [here](https://data.world/wnedds/occupations-by-state-and-likelihood-of-automation))
 
 
