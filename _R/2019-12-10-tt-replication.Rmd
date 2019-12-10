@@ -41,7 +41,9 @@ First, we read in the data. This process was a bit complicated as I kind of had 
 I relied on three datasets:
 
 1) Educational attainment broke down by occupation, provided by BLS [here](https://www.bls.gov/emp/ep_education_training_system.htm)
+
 2) Salaries, median hourly/annual wages broke down by occupation, provided by BLS [here](https://www.bls.gov/oes/current/oes_nat.htm#11-0000)
+
 3) Risk of automation broken down by occupation, provided by Carl Benedikt Frey and Michael A. Osborne (but compiled [here](https://data.world/wnedds/occupations-by-state-and-likelihood-of-automation))
 
 ```{r}
@@ -359,7 +361,7 @@ We're done! Run the application with the following code:
 shinyApp(ui = ui, server = server)
 ```
 
-And we're done! find the visualization [here](https://connorrothschild.shinyapps.io/2019-12-10/).
+And we're done! find the visualization [here](https://connorrothschild.shinyapps.io/2019-12-10/). Find the code, uninterrupted and (hopefully) reproducible, *[here](https://github.com/connorrothschild/tidytuesday/blob/master/2019-12-10/app.R)*.
 
 Here's the Bloomberg visualization:
 

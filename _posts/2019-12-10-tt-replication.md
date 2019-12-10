@@ -376,7 +376,7 @@ We're done! Run the application with the following code:
 shinyApp(ui = ui, server = server)
 {% endhighlight %}
 
-And we're done! find the visualization [here](https://connorrothschild.shinyapps.io/2019-12-10/).
+And we're done! find the visualization [here](https://connorrothschild.shinyapps.io/2019-12-10/). Find the code, uninterrupted and (hopefully) reproducible, *[here](https://github.com/connorrothschild/tidytuesday/blob/master/2019-12-10/app.R)*.
 
 Here's the Bloomberg visualization:
 
