@@ -1,5 +1,5 @@
 ---
-title: "Tidy Tuesday: Replications"
+title: "Tidy Tuesday: Replication"
 date: "2019-12-10"
 category: R
 tags: [r, visualization, replication]
@@ -9,7 +9,7 @@ comments: true
 This weeks's installment of [Tidy Tuesday](https://t.co/sElb4fcv3u?amp=1) is all about replicating professional plots in R. 
 Inspired by Rafael Irizarry's post ["You can replicate almost any plot with R"](https://simplystatistics.org/2019/08/28/you-can-replicate-almost-any-plot-with-ggplot2/), the goal is to take otherwise professional publication-ready plots and make them in R (usually ggplot2).
 
-I was interested in this Tidy Tuesday because some of my [past work](https://connorrothschild.github.io/r/introducing-tpltheme/) has been dedicated to creating publication-ready plots. Because the first visualization I ever created was inspired by (a replication of?) [this visualization](https://www.bloomberg.com/graphics/2017-job-risk/) from Bloomberg graphics, I decided to set out on a journey to make that plot as close as possible to the real thing.
+I was interested in this Tidy Tuesday because some of my [past work](https://connorrothschild.github.io/r/introducing-tpltheme/) has been dedicated to creating publication-ready plots. Because [the first visualization I ever created](https://connorrothschild.github.io/r/automation/) was inspired by (a replication of?) [this visualization](https://www.bloomberg.com/graphics/2017-job-risk/) from Bloomberg graphics, I decided to set out on a journey to make that plot as close as possible to the real thing.
 
 ![center](/figs/2019-12-10-tt-replication/bloomberg.png)
 
@@ -40,7 +40,9 @@ First, we read in the data. This process was a bit complicated as I kind of had 
 I relied on three datasets:
 
 1) Educational attainment broke down by occupation, provided by BLS [here](https://www.bls.gov/emp/ep_education_training_system.htm)
+
 2) Salaries, median hourly/annual wages broke down by occupation, provided by BLS [here](https://www.bls.gov/oes/current/oes_nat.htm#11-0000)
+
 3) Risk of automation broken down by occupation, provided by Carl Benedikt Frey and Michael A. Osborne (but compiled [here](https://data.world/wnedds/occupations-by-state-and-likelihood-of-automation))
 
 
@@ -154,7 +156,7 @@ scale_x_continuous(limits = c(0,100),
                    labels = c(10,20,30,40,50,60,70,80,"90%"))
 {% endhighlight %}
 
-We create a bit of a buffer on the `limits` function so that we can add annotations. We'll get to that later!
+We create a bit of a buffer on the `limits` argument so that we can add annotations. We'll get to that later!
 
 ### Colors
 
@@ -204,7 +206,7 @@ After creating the base plotly object, we move to some more complicated steps:
 
 ### Legend Orientation
 
-We'd like the legend to orient horizontally, right above the plot. We do that with the following (inside the `layout` function:
+We'd like the legend to orient horizontally, right above the plot. We do that with the following (inside the `layout` function):
 
 
 {% highlight r %}
@@ -221,7 +223,7 @@ This does a few things. First, it orients the legend horizontally. Second, it an
 
 ### Axes Revisited
 
-We also see in the Bloomberg viz a right-aligned Y-axis. We can add that to plotly via the following code:
+We also see the Bloomberg viz has a right-aligned Y-axis. We can add that to plotly via the following code:
 
 
 {% highlight r %}
@@ -333,7 +335,7 @@ add_annotations(
     )
 {% endhighlight %}
 
-And finally, add the plot annotations which label specific points. (We are not labelling a hundred occupations like Bloomberg did.)
+And finally, add a couple of plot annotations which label specific points. (We are not labelling a hundred occupations like Bloomberg did.)
 
 
 {% highlight r %}
@@ -367,7 +369,12 @@ add_annotations(
     )
 {% endhighlight %}
 
-Finalize the plotly object with `config(displaylogo = F, showSendToCloud = F, displayModeBar = F)`. 
+Finalize the plotly object with 
+
+
+{% highlight r %}
+config(displaylogo = F, showSendToCloud = F, displayModeBar = F)
+{% endhighlight %}
 
 We're done! Run the application with the following code:
 
@@ -376,7 +383,7 @@ We're done! Run the application with the following code:
 shinyApp(ui = ui, server = server)
 {% endhighlight %}
 
-And we're done! find the visualization [here](https://connorrothschild.shinyapps.io/2019-12-10/). Find the code, uninterrupted and (hopefully) reproducible, *[here](https://github.com/connorrothschild/tidytuesday/blob/master/2019-12-10/app.R)*.
+And we're done! Find my interactive visualization [here](https://connorrothschild.shinyapps.io/2019-12-10/). Find the code, uninterrupted and (hopefully) reproducible, *[here](https://github.com/connorrothschild/tidytuesday/blob/master/2019-12-10/app.R)*.
 
 Here's the Bloomberg visualization:
 
