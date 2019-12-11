@@ -4,9 +4,13 @@ title: "R Visualization Portfolio"
 read_time: false
 ---
          
+[Tidy Tuesday: Replication](https://connorrothschild.github.io/r/tt-replication/)
+
+[![Tidy Tuesday: Replication](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/replication.jpg)](https://connorrothschild.github.io/r/tt-replication/)         
+         
 [Streetmaps using ggplot2](https://connorrothschild.github.io/r/map-springfield/)
 
-[![Scrollytelling in R](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/streetmap.jpg)](https://connorrothschild.github.io/r/map-springfield/)
+[![Streetmaps using ggplot2](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/streetmap.jpg)](https://connorrothschild.github.io/r/map-springfield/)
          
 [Scrollytelling in R](https://connorrothschild.shinyapps.io/automation/)
 
