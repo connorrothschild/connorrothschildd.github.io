@@ -4,7 +4,7 @@ title: "R Visualization Portfolio"
 read_time: false
 ---
          
-[Tidy Tuesday: Replication](https://connorrothschild.github.io/r/tt-replication/)
+[Replicating Plots in R](https://connorrothschild.github.io/r/tt-replication/)
 
 [![Tidy Tuesday: Replication](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/replication.jpg)](https://connorrothschild.github.io/r/tt-replication/)         
          
