@@ -192,7 +192,7 @@ row.order <- c("Jim", "Michael", "Dwight", "Pam", "Andy", "Angela", "Kevin", "Er
 int_chord <- int_chord[row.order,]
 {% endhighlight %}
 
-Next, we load [Matt Flor](https://github.com/mattflor)'s `[chorddiag](https://github.com/mattflor/chorddiag)` package, and construct a matrix according to its function's liking:
+Next, we load [Matt Flor](https://github.com/mattflor)'s [`chorddiag`](https://github.com/mattflor/chorddiag) package, and construct a matrix according to its function's liking:
 
 
 {% highlight r %}
