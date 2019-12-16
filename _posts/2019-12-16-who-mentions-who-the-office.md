@@ -219,4 +219,4 @@ p <- chorddiag(m,
 # p
 {% endhighlight %}
 
-Play around with the diagram [here](https://connorrothschild.github.io/D3.js/the-office/)!
+Play around with the diagram [here](https://connorrothschild.github.io/D3.js/the-office-popularity/)!
