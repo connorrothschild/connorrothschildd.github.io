@@ -1,6 +1,6 @@
 ---
 title: "The Office: Who Mentions Who?"
-date: "2019-06-12"
+date: "2019-12-16"
 category: R
 tags: [r, visualization, interactive]
 comments: true
@@ -219,4 +219,4 @@ p <- chorddiag(m,
 # p
 {% endhighlight %}
 
-Play around with the diagram [here](connorrothschild.github.io/D3.js/the-office/)!
+Play around with the diagram [here](https://connorrothschild.github.io/D3.js/the-office/)!
