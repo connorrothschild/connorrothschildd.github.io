@@ -4,9 +4,9 @@ title: "Resume"
 read_time: false
 ---
 
-[![Resume](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/resume.jpg)](https://docs.google.com/viewer?url=https://github.com/connorrothschild/connorrothschild.github.io/raw/master/figs/ConnorRothschildResumeOct19.pdf)
+[![Resume](https://raw.githubusercontent.com/connorrothschild/connorrothschild.github.io/master/_assets/images/resume.jpg)](https://docs.google.com/viewer?url=https://github.com/connorrothschild/connorrothschild.github.io/raw/master/figs/ConnorRothschildResume.pdf)
 
-You can find a copy of my resume [here](https://docs.google.com/viewer?url=https://github.com/connorrothschild/connorrothschild.github.io/raw/master/figs/ConnorRothschildResumeOct19.pdf).
+You can find a copy of my resume [here](https://docs.google.com/viewer?url=https://github.com/connorrothschild/connorrothschild.github.io/raw/master/figs/ConnorRothschildResume.pdf).
 
 You can find a lengthier version of my CV [here](https://connorrothschild.github.io/markdown-cv/).
 
